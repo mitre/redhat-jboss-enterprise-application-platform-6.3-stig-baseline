@@ -1,0 +1,35 @@
+# encoding: utf-8
+#
+# This is an example of an attributes file that can be passed to the profile
+# to override the defaults of the attributes defined in each of the tests.
+# You can use this to automatically adjust your tests when using automation or
+# progromatic deployment or validation of differnt deployment patterns without
+# having to adjust the core profile.
+
+# === PROFILE USER EDIT ===
+
+
+#command to use when the wildfly cli is configured without a passwprd
+
+
+
+#command to use when the wildfly cli is configured with a passwprd
+#-u=<username to login in a>
+#-p=<password>
+
+#If running the profile, before running the wildfly-hardening cookbook set this
+connection: '--connect'
+
+#If running the profile, after running the wildfy-hardening cookbook set this
+#connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
+high_availability: 'false'
+ldap: 'false'
+#connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect'
+
+
+
+#node.default['wildfly-hardening']['c'] = '--connect'
+
+
+
+command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)

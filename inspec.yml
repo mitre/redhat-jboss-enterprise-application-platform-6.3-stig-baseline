@@ -1,0 +1,12 @@
+name: wildfly-stig-baseline
+title: wildfly inspec profile
+maintainer: MITRE InSpec Team
+copyright: MITRE InSpec Team
+copyright_email: inspec@mitre.org
+license: Apache-2.0
+summary: InSpec profile testing compliance with DISA STIG for JBOSS EAP Wildfly
+description: > 
+  An InSpec profile verifying STIG compliance with JBOSS EAP STIG 
+  http://iasecontent.disa.mil/stigs/zip/U_JBoss_EAP_6-3_V1R2_STIG.zip 
+  with modifications for Wildfly
+version: 0.1.0
