@@ -1,13 +1,14 @@
 CONNECT= attribute(
   'connection',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Command used to connect to the wildfly instance',
+  default: '--connect'
 )
+
 
 LDAP= attribute(
   'ldap',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Set to true if ldap is being used',
+  default: 'false'
 )
 
 control "V-62291" do

@@ -1,7 +1,7 @@
 HIGH_AVAILABILITY= attribute(
   'high_availability',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Set to true if widlfy is being used as a high-availability cluster',
+  default: 'false'
 )
 
 control "V-62319" do

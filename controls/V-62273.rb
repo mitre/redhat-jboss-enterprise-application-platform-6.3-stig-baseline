@@ -1,14 +1,13 @@
 CONNECT= attribute(
   'connection',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Command used to connect to the wildfly instance',
+  default: '--connect'
 )
 
 APPROVED_APPLICATIONS= attribute(
   'approved_applications',
   description: 'List of  authorized applications.',
   default: %w[
-            sample.war
 
            ]
 )

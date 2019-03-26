@@ -1,8 +1,9 @@
 CONNECT= attribute(
   'connection',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Command used to connect to the wildfly instance',
+  default: '--connect'
 )
+
 
 control "V-62235" do
   title "Wildfly must be configured to initiate session logging upon startup."

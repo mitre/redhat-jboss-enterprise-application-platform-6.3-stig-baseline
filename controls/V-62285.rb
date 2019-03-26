@@ -1,15 +1,16 @@
 LDAP= attribute(
   'ldap',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Set to true if ldap is being used',
+  default: 'false'
 )
 
 
 CONNECT= attribute(
   'connection',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Command used to connect to the wildfly instance',
+  default: '--connect'
 )
+
 control "V-62285" do
   title "Wildfly management Interfaces must be integrated with a centralized
   authentication mechanism that is configured to manage accounts according to DoD

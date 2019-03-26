@@ -1,8 +1,9 @@
 CONNECT= attribute(
   'connection',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Command used to connect to the wildfly instance',
+  default: '--connect'
 )
+
 
 control "V-62287" do
   title "The Wildfly Password Vault must be used for storing passwords or other

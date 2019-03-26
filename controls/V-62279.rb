@@ -1,9 +1,9 @@
-
 CONNECT= attribute(
   'connection',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Command used to connect to the wildfly instance',
+  default: '--connect'
 )
+
 control "V-62279" do
   title "The Wildfly Server must be configured to use certificates to
   authenticate admins."

@@ -1,12 +1,14 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
-)
 LDAP= attribute(
   'ldap',
-  description: 'Minimum Web vendor-supported version.',
-  default: ''
+  description: 'Set to true if ldap is being used',
+  default: 'false'
+)
+
+
+CONNECT= attribute(
+  'connection',
+  description: 'Command used to connect to the wildfly instance',
+  default: '--connect'
 )
 control "V-62293" do
   title "Wildfly must utilize encryption when using LDAP for authentication."
