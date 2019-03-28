@@ -7,12 +7,7 @@
 # having to adjust the core profile.
 
 # === PROFILE USER EDIT ===
-
-
 #command to use when the wildfly cli is configured without a passwprd
-
-
-
 #command to use when the wildfly cli is configured with a passwprd
 #-u=<username to login in a>
 #-p=<password>
@@ -24,12 +19,6 @@ connection: '--connect'
 #connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
 high_availability: 'false'
 ldap: 'false'
-#connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect'
-
-
-
+connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect'
 #node.default['wildfly-hardening']['c'] = '--connect'
-
-
-
-command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)
+# command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)
