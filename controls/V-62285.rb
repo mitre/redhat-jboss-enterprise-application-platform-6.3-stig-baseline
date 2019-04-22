@@ -83,7 +83,6 @@ control "V-62285" do
   end
   if management_interfaces.empty?
     impact 0.0
-    desc 'There are no wildfly management interfaces, therefore this control is not applicable'
     describe 'The are no Wildfly accounts with the following roles: auditor, administrator, superuser, deployer, maintainer, monitor, or operator, therefore this control is not applicable' do
       skip 'The are no Wildfly accounts with the following roles: auditor, administrator, superuser, deployer, maintainer, monitor, or operator, therefore this control is not applicable'
     end

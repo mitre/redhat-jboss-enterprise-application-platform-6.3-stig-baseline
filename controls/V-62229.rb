@@ -75,7 +75,6 @@ Assign the management interfaces to the management realm."
   end
   if mgmt_interfaces.empty?
     impact 0.0
-    desc 'There are no wildfly management interfaces, therefore this control is Not Applicable'
     describe 'There are no wildfly management interfaces, therefore this control is Not Applicable' do
       skip 'There are no wildfly management interfaces, therefore this control is Not Applicable'
     end

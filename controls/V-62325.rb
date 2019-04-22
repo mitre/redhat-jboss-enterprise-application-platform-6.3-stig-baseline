@@ -23,8 +23,7 @@ control "V-62325" do
   tag "fix": "Obtain vendor support from Red Hat."
   tag "fix_id": "F-68245r1_fix"
   impact 0.0
-  desc 'Wildfly is the open-source, community version of JBoss and does not include RedHat support, therefore this control is not applicable'
-   describe "Wildfly is the open-source, community version of JBoss and does not include RedHat support, therefore this control is not applicable" do
+  describe "Wildfly is the open-source, community version of JBoss and does not include RedHat support, therefore this control is not applicable" do
     skip "Wildfly is the open-source, community version of JBoss and does not include RedHat support, therefore this control is not applicable"
   end
 end

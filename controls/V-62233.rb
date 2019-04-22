@@ -64,7 +64,6 @@ personnel into the \"Auditor\" role."
   end
   if auditor_role.empty?
     impact 0.0
-    desc 'There are no wildfly users with the auditor role, therefore this control is not applicable'
     describe 'There are no wildfly users with the auditor role, therefore this control is not applicable' do
       skip 'There are no wildfly users with the auditor role, therefore this control is not applicable'
     end

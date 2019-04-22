@@ -118,7 +118,6 @@ appropriate roles."
 
   if auditor_role.empty? && administrator_role.empty? && superuser_role.empty?
     impact 0.0
-    desc 'There are no Wildfly users with the auditor, administrator or superuser roles, therefore this control is not applicable'
     describe 'There are no Wildfly users with the auditor, administrator or superuser roles, therefore this control is not applicable' do
       skip 'There are no Wildfly users with the auditor, administrator or superuser roles, therefore this control is not applicable'
     end

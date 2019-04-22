@@ -108,7 +108,6 @@ control "V-62279" do
   end
   if mgmt_interfaces.empty?
     impact 0.0
-    desc 'There are no wildfly management realms, therefore this control is not applicable'
     describe 'There are no wildfly management realms, therefore this control is not applicable' do
       skip 'There are no wildfly management realms, therefore this control is not applicable'
     end

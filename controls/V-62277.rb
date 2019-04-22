@@ -62,7 +62,6 @@ control "V-62277" do
   end
   if get_security_realms.empty?
     impact 0.0
-    desc 'There are no wildfly security realms configured, therefore this controls is not applicable' 
     describe 'There are no wildfly security realms configured, therefore this controls is not applicable' do
       skip 'There are no wildfly security realms configured, therefore this controls is not applicable'
     end
