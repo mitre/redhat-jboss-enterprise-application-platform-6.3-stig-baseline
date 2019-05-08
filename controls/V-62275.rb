@@ -65,10 +65,9 @@ Select the port that needs to be reconfigured and select \"Edit\"."
   WILDFLY_PORTS.each do |port|
     describe file('/opt/wildfly/standalone/configuration/service.properties') do
       its('content') { should include port}
-    end  
-    escribe file('/opt/wildfly/standalone/configuration/service.properties') do
+    end
+    describe file('/opt/wildfly/standalone/configuration/service.properties') do
       it { should exist}
-    end  
+    end
   end
 end
-
