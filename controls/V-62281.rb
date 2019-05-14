@@ -1,6 +1,3 @@
-# these are default attributes to check for wilfly users based on their role
-# they should be changed, using the format user-<username>
-# a user named test wouuld look like user-test
 control "V-62281" do
   title "The Wildfly server must be configured to use individual accounts and not
   generic or shared accounts."
@@ -71,24 +68,12 @@ control "V-62281" do
   monitor_role_users = attribute('monitor_role_users')
   operator_role_users = attribute('operator_role_users')
 
-  # obtains all users with the auditor role
   auditor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Auditor/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
-
-  # obtains all users with the administrator role
   administrator_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Administrator/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
-
-  # obtains all users with the SuperUser role
   superuser_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=SuperUser/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
-
-  # obtains all users with the deployer role
   deployer_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Deployer/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
-  # obtains all users with the maintainer role
   maintainer_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Maintainer/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
-
-  # obtains all users with the monitor role
   monitor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Monitor/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
-
-  # obtains all users with the operator role
   operator_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Operator/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
 
   if !auditor_role.empty?
