@@ -1,4 +1,4 @@
-control "V-62295" do
+control 'V-62295' do
   title "The Wildfly server must be configured to restrict access to the web
   servers private key to authenticated system administrators."
   desc  "
@@ -17,13 +17,13 @@ control "V-62295" do
   usually maintained in a file stored on the file system.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000176-AS-000125"
-  tag "gid": "V-62295"
-  tag "rid": "SV-76785r1_rule"
-  tag "stig_id": "JBOS-AS-000320"
-  tag "cci": ["CCI-000186"]
+  tag "gtitle": 'SRG-APP-000176-AS-000125'
+  tag "gid": 'V-62295'
+  tag "rid": 'SV-76785r1_rule'
+  tag "stig_id": 'JBOS-AS-000320'
+  tag "cci": ['CCI-000186']
   tag "documentable": false
-  tag "nist": ["IA-5 (2) (b)", "Rev_4"]
+  tag "nist": ['IA-5 (2) (b)', 'Rev_4']
   tag "check": "The default location for the keystore used by the Wildfly vault
   is the $JBOSS_HOME;/vault/ folder.
 
@@ -46,7 +46,7 @@ control "V-62295" do
   folder, this is a finding."
   tag "fix": "Configure the application server OS file permissions on the
   corresponding private key to restrict access to authorized accounts or roles."
-  tag "fix_id": "F-68215r1_fix"
+  tag "fix_id": 'F-68215r1_fix'
   describe directory('/opt/wildfly/vault') do
     it { should_not be_readable.by('others') }
   end

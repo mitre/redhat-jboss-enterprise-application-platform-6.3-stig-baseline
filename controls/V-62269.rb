@@ -1,17 +1,17 @@
-control "V-62269" do
+control 'V-62269' do
   title "Remote access to JMX subsystem must be disabled."
   desc  "The JMX subsystem allows you to trigger JDK and application management
   operations remotely.  In a managed domain configuration, the JMX subsystem is
   removed by default. For a standalone configuration, it is enabled by default
   and must be removed."
   impact 0.5
-  tag "gtitle": "SRG-APP-000141-AS-000095"
-  tag "gid": "V-62269"
-  tag "rid": "SV-76759r1_rule"
-  tag "stig_id": "JBOS-AS-000240"
-  tag "cci": ["CCI-000381"]
+  tag "gtitle": 'SRG-APP-000141-AS-000095'
+  tag "gid": 'V-62269'
+  tag "rid": 'SV-76759r1_rule'
+  tag "stig_id": 'JBOS-AS-000240'
+  tag "cci": ['CCI-000381']
   tag "documentable": false
-  tag "nist": ["CM-7 a", "Rev_4"]
+  tag "nist": ['CM-7 a', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
 
@@ -43,7 +43,7 @@ control "V-62269" do
 
   For a Standalone configuration:
   \"/subsystem=jmx/remoting-connector=jmx:remove\""
-  tag "fix_id": "F-68189r1_fix"
+  tag "fix_id": 'F-68189r1_fix'
 
   connect = attribute('connection')
   describe 'The wildfly remote access' do

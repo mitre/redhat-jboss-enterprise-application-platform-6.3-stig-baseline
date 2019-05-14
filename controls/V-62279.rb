@@ -1,4 +1,4 @@
-control "V-62279" do
+control 'V-62279' do
   title "The Wildfly Server must be configured to use certificates to
   authenticate admins."
   desc  "
@@ -31,13 +31,13 @@ control "V-62279" do
   enabled or a DoD-approved soft certificate.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000149-AS-000102"
-  tag "gid": "V-62279"
-  tag "rid": "SV-76769r1_rule"
-  tag "stig_id": "JBOS-AS-000265"
-  tag "cci": ["CCI-000765"]
+  tag "gtitle": 'SRG-APP-000149-AS-000102'
+  tag "gid": 'V-62279'
+  tag "rid": 'SV-76769r1_rule'
+  tag "stig_id": 'JBOS-AS-000265'
+  tag "cci": ['CCI-000765']
   tag "documentable": false
-  tag "nist": ["IA-2 (1)", "Rev_4"]
+  tag "nist": ['IA-2 (1)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -76,7 +76,7 @@ control "V-62279" do
   tag "fix": "Configure the application server to authenticate privileged users
   via multifactor/certificate-based authentication mechanisms when using network
   access to the management interface."
-  tag "fix_id": "F-68199r1_fix"
+  tag "fix_id": 'F-68199r1_fix'
 
   connect = attribute('connection')
 
@@ -85,7 +85,7 @@ control "V-62279" do
   mgmt_interfaces.each do |interface|
 
     security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
-     security_realms.each do |realm|
+    security_realms.each do |realm|
 
       get_authentication = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout
       http_enabled = describe command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface") .stdout
@@ -93,7 +93,7 @@ control "V-62279" do
       describe.one do
         describe "The wildfly server authentication for security realm #{realm}" do
           subject { get_authentication }
-          it { should match /truststore/}
+          it { should match /truststore/ }
         end
         describe "The wildfly server authentication for security realm #{realm}" do
           subject { http_enabled }

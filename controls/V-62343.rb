@@ -1,4 +1,4 @@
-control "V-62343" do
+control 'V-62343' do
   title "The Wildlfy server must be configured to use DoD- or CNSS-approved PKI
   Class 3 or Class 4 certificates."
   desc  "Class 3 PKI certificates are used for servers and software signing
@@ -8,13 +8,13 @@ control "V-62343" do
   must utilize approved DoD or CNS Class 3 or Class 4 certificates for software
   signing and business-to-business transactions."
   impact 0.5
-  tag "gtitle": "SRG-APP-000514-AS-000137"
-  tag "gid": "V-62343"
-  tag "rid": "SV-76833r1_rule"
-  tag "stig_id": "JBOS-AS-000730"
-  tag "cci": ["CCI-002450"]
+  tag "gtitle": 'SRG-APP-000514-AS-000137'
+  tag "gid": 'V-62343'
+  tag "rid": 'SV-76833r1_rule'
+  tag "stig_id": 'JBOS-AS-000730'
+  tag "cci": ['CCI-002450']
   tag "documentable": false
-  tag "nist": ["SC-13", "Rev_4"]
+  tag "nist": ['SC-13', 'Rev_4']
   tag "check": "Interview the administrator to determine if Wildlfy is using
   certificates for PKI.  If Wildlfy is not performing any PKI functions, this
   finding is NA.
@@ -36,7 +36,7 @@ control "V-62343" do
   a finding."
   tag "fix": "Configure the application server to use DoD- or CNSS-approved
   Class 3 or Class 4 PKI certificates."
-  tag "fix_id": "F-68263r1_fix"
+  tag "fix_id": 'F-68263r1_fix'
   certs = command("keytool -list -v -keystore /usr/lib/jvm/java-1.8.0/jre/lib/security/cacerts").stdout
   describe.one do
     describe 'The wildfly server PKI certificate' do

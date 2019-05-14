@@ -1,4 +1,4 @@
-control "V-62073" do
+control 'V-62073' do
   title "HTTP management session traffic must be encrypted."
   desc  "
     Types of management interfaces utilized by the Wildfly EAP application server
@@ -10,13 +10,13 @@ be via HTTPS.
 management access to a restricted network.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000014-AS-000009"
-  tag "gid": "V-62073"
-  tag "rid": "SV-76563r1_rule"
-  tag "stig_id": "JBOS-AS-000010"
-  tag "cci": ["CCI-000068"]
+  tag "gtitle": 'SRG-APP-000014-AS-000009'
+  tag "gid": 'V-62073'
+  tag "rid": 'SV-76563r1_rule'
+  tag "stig_id": 'JBOS-AS-000010'
+  tag "cci": ['CCI-000068']
   tag "documentable": false
-  tag "nist": ["AC-17 (2)", "Rev_4"]
+  tag "nist": ['AC-17 (2)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly. Using the relevant OS commands and syntax, cd to the
 $JBOSS_HOME;/bin/ folder.
@@ -44,7 +44,7 @@ This involves the following steps.
 4. Configure Management Interface to use new security realm.
 5. Configure the management console to use the keystore.
 6. Restart the EAP server."
-  tag "fix_id": "F-67993r1_fix"
+  tag "fix_id": 'F-67993r1_fix'
 
   connect = attribute('connection')
 

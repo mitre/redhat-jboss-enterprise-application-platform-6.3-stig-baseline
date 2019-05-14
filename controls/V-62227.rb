@@ -1,4 +1,4 @@
-control "V-62227" do
+control 'V-62227' do
   title "The Wildfly server must be configured with Role Based Access Controls."
   desc  "By default, the Wildfly server is not configured to utilize role based
 access controls (RBAC).  RBAC provides the capability to restrict user access
@@ -6,13 +6,13 @@ to their designated management role, thereby limiting access to only the Wildfly
 functionality that they are supposed to have.  Without RBAC, the Wildfly server
 is not able to enforce authorized access according to role."
   impact 0.7
-  tag "gtitle": "SRG-APP-000033-AS-000024"
-  tag "gid": "V-62227"
-  tag "rid": "SV-76717r1_rule"
-  tag "stig_id": "JBOS-AS-000035"
-  tag "cci": ["CCI-000213"]
+  tag "gtitle": 'SRG-APP-000033-AS-000024'
+  tag "gid": 'V-62227'
+  tag "rid": 'SV-76717r1_rule'
+  tag "stig_id": 'JBOS-AS-000035'
+  tag "cci": ['CCI-000213']
   tag "documentable": false
-  tag "nist": ["AC-3", "Rev_4"]
+  tag "nist": ['AC-3', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly.
 Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -41,7 +41,7 @@ Map users to roles by running the following command.  Upper-case words  are
 variables.
 
 role-mapping=ROLENAME/include=ALIAS:add(name-USERNAME, type=USER ROLE)"
-  tag "fix_id": "F-68147r1_fix"
+  tag "fix_id": 'F-68147r1_fix'
 
   connect = attribute('connection')
 

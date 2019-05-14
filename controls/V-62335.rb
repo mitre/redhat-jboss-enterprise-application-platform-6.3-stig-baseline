@@ -1,4 +1,4 @@
-control "V-62335" do
+control 'V-62335' do
   title "Wildfly must be configured to generate log records for privileged
   activities."
   desc  "
@@ -12,13 +12,13 @@ control "V-62335" do
   is utilized by the application server, these activities must be logged.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000504-AS-000229"
-  tag "gid": "V-62335"
-  tag "rid": "SV-76825r1_rule"
-  tag "stig_id": "JBOS-AS-000705"
-  tag "cci": ["CCI-000172"]
+  tag "gtitle": 'SRG-APP-000504-AS-000229'
+  tag "gid": 'V-62335'
+  tag "rid": 'SV-76825r1_rule'
+  tag "stig_id": 'JBOS-AS-000705'
+  tag "cci": ['CCI-000172']
   tag "documentable": false
-  tag "nist": ["AU-12 c", "Rev_4"]
+  tag "nist": ['AU-12 c', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -46,7 +46,7 @@ control "V-62335" do
 
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68255r1_fix"
+  tag "fix_id": 'F-68255r1_fix'
 
   connect = attribute('connection')
 

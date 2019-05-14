@@ -1,4 +1,4 @@
-control "V-62297" do
+control 'V-62297' do
   title "The Wildfly server must separate hosted application functionality from
   application server management functionality."
   desc  "
@@ -26,13 +26,13 @@ control "V-62297" do
   management and which address is used for public/application access.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000211-AS-000146"
-  tag "gid": "V-62297"
-  tag "rid": "SV-76787r1_rule"
-  tag "stig_id": "JBOS-AS-000355"
-  tag "cci": ["CCI-001082"]
+  tag "gtitle": 'SRG-APP-000211-AS-000146'
+  tag "gid": 'V-62297'
+  tag "rid": 'SV-76787r1_rule'
+  tag "stig_id": 'JBOS-AS-000355'
+  tag "cci": ['CCI-001082']
   tag "documentable": false
-  tag "nist": ["SC-2", "Rev_4"]
+  tag "nist": ['SC-2', 'Rev_4']
   tag "check": "If Wildfly is not started with separate management and public
   interfaces, this is a finding.
 
@@ -60,7 +60,7 @@ control "V-62297" do
 
   Refer to section 4.9 in the Wildfly Installation Guide for specific
   instructions on how to start the Wildfly server as a service."
-  tag "fix_id": "F-68217r1_fix"
+  tag "fix_id": 'F-68217r1_fix'
   bind_mgmt_address = command("grep jboss.bind.address.management /opt/wildfly/standalone/configuration/service.properties | awk -F'=' '{print $2}' ").stdout
   public_bind_address = command("grep jboss.bind.address /opt/wildfly/standalone/configuration/service.properties | grep -v management | awk -F'=' '{print $2}' ").stdout
   describe 'The wildfly bind management address' do

@@ -1,4 +1,4 @@
-control "V-62271" do
+control 'V-62271' do
   title "Welcome Web Application must be disabled."
   desc  "The Welcome to Wildfly web page provides a redirect to the Wildfly admin
   console, which, by default, runs on TCP 9990 as well as redirects to the Online
@@ -6,13 +6,13 @@ control "V-62271" do
   welcome page is unnecessary and should be disabled or replaced with a valid web
   page."
   impact 0.3
-  tag "gtitle": "SRG-APP-000141-AS-000095"
-  tag "gid": "V-62271"
-  tag "rid": "SV-76761r1_rule"
-  tag "stig_id": "JBOS-AS-000245"
-  tag "cci": ["CCI-000381"]
+  tag "gtitle": 'SRG-APP-000141-AS-000095'
+  tag "gid": 'V-62271'
+  tag "rid": 'SV-76761r1_rule'
+  tag "stig_id": 'JBOS-AS-000245'
+  tag "cci": ['CCI-000381']
   tag "documentable": false
-  tag "nist": ["CM-7 a", "Rev_4"]
+  tag "nist": ['CM-7 a', 'Rev_4']
   tag "check": "Use a web browser and browse to HTTP://Wildfly SERVER IP
   ADDRESS:8080
 
@@ -36,7 +36,7 @@ control "V-62271" do
   <jboss-web>
            <context-root>/</context-root>
   </jboss-web>"
-  tag "fix_id": "F-68191r1_fix"
+  tag "fix_id": 'F-68191r1_fix'
 
   connect = attribute('connection')
   describe 'The wildfly web application' do

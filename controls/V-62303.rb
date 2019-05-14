@@ -1,4 +1,4 @@
-control "V-62303" do
+control 'V-62303' do
   title "Network access to HTTP management must be disabled on domain-enabled
   application servers not designated as the domain controller."
   desc  "
@@ -13,13 +13,13 @@ control "V-62303" do
   controller.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000316-AS-000199"
-  tag "gid": "V-62303"
-  tag "rid": "SV-76793r1_rule"
-  tag "stig_id": "JBOS-AS-000470"
-  tag "cci": ["CCI-002322"]
+  tag "gtitle": 'SRG-APP-000316-AS-000199'
+  tag "gid": 'V-62303'
+  tag "rid": 'SV-76793r1_rule'
+  tag "stig_id": 'JBOS-AS-000470'
+  tag "cci": ['CCI-002322']
   tag "documentable": false
-  tag "nist": ["AC-17 (9)", "Rev_4"]
+  tag "nist": ['AC-17 (9)', 'Rev_4']
   tag "check": "Log on to each of the Wildfly domain member servers.
 
   Note: Sites that manage systems using the Wildfly Operations Network client
@@ -43,7 +43,7 @@ control "V-62303" do
   {\"outcome\" => \"success\"}, and future attempts to access the management
   console via web browser at <SERVERNAME>:9990 will result in no access to the
   admin console."
-  tag "fix_id": "F-68223r1_fix"
+  tag "fix_id": 'F-68223r1_fix'
 
   connect = attribute('connection')
 

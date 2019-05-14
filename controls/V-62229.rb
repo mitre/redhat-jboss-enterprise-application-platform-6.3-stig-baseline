@@ -1,4 +1,4 @@
-control "V-62229" do
+control 'V-62229' do
   title "Wildfly management interfaces must be secured."
   desc  "Wildfly utilizes the concept of security realms to secure the management
 interfaces used for Wildfly server administration.  If the security realm
@@ -6,13 +6,13 @@ attribute is omitted or removed from the management interface definition,
 access to that interface is no longer secure.  The Wildfly management interfaces
 must be secured."
   impact 0.7
-  tag "gtitle": "SRG-APP-000033-AS-000024"
-  tag "gid": "V-62229"
-  tag "rid": "SV-76719r1_rule"
-  tag "stig_id": "JBOS-AS-000075"
-  tag "cci": ["CCI-000213"]
+  tag "gtitle": 'SRG-APP-000033-AS-000024'
+  tag "gid": 'V-62229'
+  tag "rid": 'SV-76719r1_rule'
+  tag "stig_id": 'JBOS-AS-000075'
+  tag "cci": ['CCI-000213']
   tag "documentable": false
-  tag "nist": ["AC-3", "Rev_4"]
+  tag "nist": ['AC-3', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly.
 Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -57,7 +57,7 @@ assign authentication and authorization access restrictions to the management
 realm.
 
 Assign the management interfaces to the management realm."
-  tag "fix_id": "F-68149r1_fix"
+  tag "fix_id": 'F-68149r1_fix'
 
   connect = attribute('connection')
 
@@ -66,7 +66,7 @@ Assign the management interfaces to the management realm."
   mgmt_interfaces.each do |interface|
     describe "Wildfly management interface: #{interface}" do
       subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=#{interface}").stdout }
-      it { should match(%r{security-realm=ManagementRealm})}
+      it { should match(%r{security-realm=ManagementRealm}) }
     end
   end
   if mgmt_interfaces.empty?

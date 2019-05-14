@@ -1,4 +1,4 @@
-control "V-62221" do
+control 'V-62221' do
   title "Silent Authentication must be removed from the Default Application
 Security Realm."
   desc  "Silent Authentication is a configuration setting that allows local OS
@@ -7,13 +7,13 @@ specifically authenticating on an individual user basis.  By default $localuser
 is a Superuser. This introduces an integrity and availability vulnerability and
 violates best practice requirements regarding accountability."
   impact 0.7
-  tag "gtitle": "SRG-APP-000033-AS-000024"
-  tag "gid": "V-62221"
-  tag "rid": "SV-76711r1_rule"
-  tag "stig_id": "JBOS-AS-000045"
-  tag "cci": ["CCI-000213"]
+  tag "gtitle": 'SRG-APP-000033-AS-000024'
+  tag "gid": 'V-62221'
+  tag "rid": 'SV-76711r1_rule'
+  tag "stig_id": 'JBOS-AS-000045'
+  tag "cci": ['CCI-000213']
   tag "documentable": false
-  tag "nist": ["AC-3", "Rev_4"]
+  tag "nist": ['AC-3', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly.
 Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -48,7 +48,7 @@ ApplicationRealm/authentication=local:remove
 For managed domain installations, run the following command:
 /host=HOST_NAME/core-service=management/securityrealm=
 ApplicationRealm/authentication=local:remove"
-  tag "fix_id": "F-68141r1_fix"
+  tag "fix_id": 'F-68141r1_fix'
 
   connect = attribute('connection')
 

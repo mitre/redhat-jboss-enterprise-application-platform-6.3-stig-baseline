@@ -1,4 +1,4 @@
-control "V-62289" do
+control 'V-62289' do
   title "Wildfly KeyStore and Truststore passwords must not be stored in clear
   text."
   desc  "
@@ -11,13 +11,13 @@ control "V-62289" do
   password is encrypted.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000171-AS-000119"
-  tag "gid": "V-62289"
-  tag "rid": "SV-76779r1_rule"
-  tag "stig_id": "JBOS-AS-000300"
-  tag "cci": ["CCI-000196"]
+  tag "gtitle": 'SRG-APP-000171-AS-000119'
+  tag "gid": 'V-62289'
+  tag "rid": 'SV-76779r1_rule'
+  tag "stig_id": 'JBOS-AS-000300'
+  tag "cci": ['CCI-000196']
   tag "documentable": false
-  tag "nist": ["IA-5 (1) (c)", "Rev_4"]
+  tag "nist": ['IA-5 (1) (c)', 'Rev_4']
   tag "check": "The default location for the keystore used by the Wildfly vault
   is the $JBOSS_HOME;/vault/ folder.
 
@@ -38,7 +38,7 @@ control "V-62289" do
   System in the
   Wildfly-Administration_and_Configuration_Guide-en-US
   document."
-  tag "fix_id": "F-68209r1_fix"
+  tag "fix_id": 'F-68209r1_fix'
 
   connect = attribute('connection')
 

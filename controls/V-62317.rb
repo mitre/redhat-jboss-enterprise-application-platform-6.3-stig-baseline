@@ -1,4 +1,4 @@
-control "V-62317" do
+control 'V-62317' do
   title "Wildfly must be configured to use DoD PKI-established certificate
   authorities for verification of the establishment of protected sessions."
   desc  "
@@ -15,13 +15,13 @@ control "V-62317" do
   PKI-established certificate authorities for verification.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000427-AS-000264"
-  tag "gid": "V-62317"
-  tag "rid": "SV-76807r1_rule"
-  tag "stig_id": "JBOS-AS-000625"
-  tag "cci": ["CCI-002470"]
+  tag "gtitle": 'SRG-APP-000427-AS-000264'
+  tag "gid": 'V-62317'
+  tag "rid": 'SV-76807r1_rule'
+  tag "stig_id": 'JBOS-AS-000625'
+  tag "cci": ['CCI-002470']
   tag "documentable": false
-  tag "nist": ["SC-23 (5)", "Rev_4"]
+  tag "nist": ['SC-23 (5)', 'Rev_4']
   tag "check": "Locate the cacerts file for the JVM.  This can be done using
   the appropriate find command for the OS and change to the directory where the
   cacerts file is located.
@@ -37,7 +37,7 @@ control "V-62317" do
 
   Remove the certificates that have a CA that is non-DoD approved, and import DoD
   CA-approved certificates."
-  tag "fix_id": "F-68237r1_fix"
+  tag "fix_id": 'F-68237r1_fix'
   dod_cn = command("keytool -list -v -keystore /usr/lib/jvm/java-1.8.0/jre/lib/security/cacerts").stdout
   eca_cn = command("keytool -list -v -keystore /usr/lib/jvm/java-1.8.0/jre/lib/security/cacerts").stdout
 

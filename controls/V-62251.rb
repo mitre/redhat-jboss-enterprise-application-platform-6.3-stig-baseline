@@ -1,4 +1,4 @@
-control "V-62251" do
+control 'V-62251' do
   title "File permissions must be configured to protect log information from
 any type of unauthorized read access."
   desc  "
@@ -16,13 +16,13 @@ system activity. Application servers must protect log information from
 unauthorized access.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000118-AS-000078"
-  tag "gid": "V-62251"
-  tag "rid": "SV-76741r1_rule"
-  tag "stig_id": "JBOS-AS-000165"
-  tag "cci": ["CCI-000162"]
+  tag "gtitle": 'SRG-APP-000118-AS-000078'
+  tag "gid": 'V-62251'
+  tag "rid": 'SV-76741r1_rule'
+  tag "stig_id": 'JBOS-AS-000165'
+  tag "cci": ['CCI-000162']
   tag "documentable": false
-  tag "nist": ["AU-9", "Rev_4"]
+  tag "nist": ['AU-9', 'Rev_4']
   tag "check": "Examine the log file locations and inspect the file
 permissions.  Interview the system admin to determine log file locations. The
 default location for the log files is:
@@ -50,7 +50,7 @@ identifies the users who are authorized to read log files is missing, this is a
 finding."
   tag "fix": "Configure the OS file permissions on the application server to
 protect log information from unauthorized read access."
-  tag "fix_id": "F-68171r1_fix"
+  tag "fix_id": 'F-68171r1_fix'
 
   wildfly_group = attribute('wildfly_group')
   wildly_owner = attribute('wildly_owner')

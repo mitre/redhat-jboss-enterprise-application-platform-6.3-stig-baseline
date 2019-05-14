@@ -1,4 +1,4 @@
-control "V-62339" do
+control 'V-62339' do
   title "Wildfly must be configured to generate log records when concurrent
   logons from different workstations occur to the application server management
   interface."
@@ -16,13 +16,13 @@ control "V-62339" do
   show that this requirement is being met.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000506-AS-000231"
-  tag "gid": "V-62339"
-  tag "rid": "SV-76829r1_rule"
-  tag "stig_id": "JBOS-AS-000715"
-  tag "cci": ["CCI-000172"]
+  tag "gtitle": 'SRG-APP-000506-AS-000231'
+  tag "gid": 'V-62339'
+  tag "rid": 'SV-76829r1_rule'
+  tag "stig_id": 'JBOS-AS-000715'
+  tag "cci": ['CCI-000172']
   tag "documentable": false
-  tag "nist": ["AU-12 c", "Rev_4"]
+  tag "nist": ['AU-12 c', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
 
@@ -51,7 +51,7 @@ control "V-62339" do
 
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68259r1_fix"
+  tag "fix_id": 'F-68259r1_fix'
 
   connect = attribute('connection')
 

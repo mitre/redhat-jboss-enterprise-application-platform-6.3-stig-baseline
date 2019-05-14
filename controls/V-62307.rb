@@ -1,4 +1,4 @@
-control "V-62307" do
+control 'V-62307' do
   title "The Wildfly server must be configured to log all admin activity."
   desc  "
     In order to be able to provide a forensic history of activity, the
@@ -10,13 +10,13 @@ data have their actions logged.
 establish accountability for privileged actions that occur on the system.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000343-AS-000030"
-  tag "gid": "V-62307"
-  tag "rid": "SV-76797r1_rule"
-  tag "stig_id": "JBOS-AS-000480"
-  tag "cci": ["CCI-002234"]
+  tag "gtitle": 'SRG-APP-000343-AS-000030'
+  tag "gid": 'V-62307'
+  tag "rid": 'SV-76797r1_rule'
+  tag "stig_id": 'JBOS-AS-000480'
+  tag "cci": ['CCI-002234']
   tag "documentable": false
-  tag "nist": ["AC-6 (9)", "Rev_4"]
+  tag "nist": ['AC-6 (9)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly.
 
@@ -39,7 +39,7 @@ $JBOSS_HOME;/<CONFIG>/bin/jboss-cli
 connect to the server and run the following command:
 
 /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)"
-  tag "fix_id": "F-68227r1_fix"
+  tag "fix_id": 'F-68227r1_fix'
 
   connect = attribute('connection')
 

@@ -1,4 +1,4 @@
-control "V-62245" do
+control 'V-62245' do
   title "Wildfly must be configured to record the IP address and port information
 used by management interface network traffic."
   desc  "
@@ -22,13 +22,13 @@ success/fail indications, filenames involved, access control, or flow control
 rules invoked.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000098-AS-000061"
-  tag "gid": "V-62245"
-  tag "rid": "SV-76735r1_rule"
-  tag "stig_id": "JBOS-AS-000125"
-  tag "cci": ["CCI-000133"]
+  tag "gtitle": 'SRG-APP-000098-AS-000061'
+  tag "gid": 'V-62245'
+  tag "rid": 'SV-76735r1_rule'
+  tag "stig_id": 'JBOS-AS-000125'
+  tag "cci": ['CCI-000133']
   tag "documentable": false
-  tag "nist": ["AU-3", "Rev_4"]
+  tag "nist": ['AU-3', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly.
 Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -56,7 +56,7 @@ For a Managed Domain configuration:
 
 For a Standalone configuration:
 \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68165r1_fix"
+  tag "fix_id": 'F-68165r1_fix'
 
   connect = attribute('connection')
 

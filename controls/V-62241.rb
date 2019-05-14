@@ -1,4 +1,4 @@
-control "V-62241" do
+control 'V-62241' do
   title "Wildfly Log Formatter must be configured to produce log records that
 establish the date and time the events occurred."
   desc  "
@@ -26,13 +26,13 @@ include, but are not limited to, Java Virtual Machine (JVM) activity, HTTPD
 activity, and application server-related system process activity.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000096-AS-000059"
-  tag "gid": "V-62241"
-  tag "rid": "SV-76731r1_rule"
-  tag "stig_id": "JBOS-AS-000115"
-  tag "cci": ["CCI-000131"]
+  tag "gtitle": 'SRG-APP-000096-AS-000059'
+  tag "gid": 'V-62241'
+  tag "rid": 'SV-76731r1_rule'
+  tag "stig_id": 'JBOS-AS-000115'
+  tag "cci": ['CCI-000131']
   tag "documentable": false
-  tag "nist": ["AU-3", "Rev_4"]
+  tag "nist": ['AU-3', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly.
 
@@ -60,7 +60,7 @@ For a Managed Domain configuration:
 
 For a Standalone configuration:
 \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68161r1_fix"
+  tag "fix_id": 'F-68161r1_fix'
 
   connect = attribute('connection')
 

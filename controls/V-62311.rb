@@ -1,4 +1,4 @@
-control "V-62311" do
+control 'V-62311' do
   title "Production Wildfly servers must not allow automatic application
   deployment."
   desc  "
@@ -17,13 +17,13 @@ control "V-62311" do
   in production.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000380-AS-000088"
-  tag "gid": "V-62311"
-  tag "rid": "SV-76801r1_rule"
-  tag "stig_id": "JBOS-AS-000545"
-  tag "cci": ["CCI-001813"]
+  tag "gtitle": 'SRG-APP-000380-AS-000088'
+  tag "gid": 'V-62311'
+  tag "rid": 'SV-76801r1_rule'
+  tag "stig_id": 'JBOS-AS-000545'
+  tag "cci": ['CCI-001813']
   tag "documentable": false
-  tag "nist": ["CM-5 (1)", "Rev_4"]
+  tag "nist": ['CM-5 (1)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -48,7 +48,7 @@ control "V-62311" do
   connect to the server and run the command:
 
   /subsystem=deployment-scanner/scanner=default:write-attribute(name=scan-enabled,value=false)"
-  tag "fix_id": "F-68231r1_fix"
+  tag "fix_id": 'F-68231r1_fix'
 
   connect = attribute('connection')
 

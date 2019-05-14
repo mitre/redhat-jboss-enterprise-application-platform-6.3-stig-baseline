@@ -1,4 +1,4 @@
-control "V-62277" do
+control 'V-62277' do
   title "The Wildfly Server must be configured to utilize a centralized
   authentication mechanism such as AD or LDAP."
   desc  "
@@ -12,13 +12,13 @@ control "V-62277" do
   must be configured to utilize a centralized authentication mechanism.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000148-AS-000101"
-  tag "gid": "V-62277"
-  tag "rid": "SV-76767r1_rule"
-  tag "stig_id": "JBOS-AS-000260"
-  tag "cci": ["CCI-000764"]
+  tag "gtitle": 'SRG-APP-000148-AS-000101'
+  tag "gid": 'V-62277'
+  tag "rid": 'SV-76767r1_rule'
+  tag "stig_id": 'JBOS-AS-000260'
+  tag "cci": ['CCI-000764']
   tag "documentable": false
-  tag "nist": ["IA-2", "Rev_4"]
+  tag "nist": ['IA-2', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -44,7 +44,7 @@ control "V-62277" do
   1. Create an outbound connection to the LDAP server.
   2. Create an LDAP-enabled security realm.
   3. Reference the new security domain in the Management Interface."
-  tag "fix_id": "F-68197r1_fix"
+  tag "fix_id": 'F-68197r1_fix'
 
   connect = attribute('connection')
 
@@ -53,7 +53,7 @@ control "V-62277" do
   get_security_realms.each do |security_realm|
     describe "The security realm #{security_realm} authentication mechanism" do
       subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{security_realm}/authentication").stdout }
-      it { should include 'ldap'}
+      it { should include 'ldap' }
     end
   end
   if get_security_realms.empty?

@@ -1,4 +1,4 @@
-control "V-62293" do
+control 'V-62293' do
   title "Wildfly must utilize encryption when using LDAP for authentication."
   desc  "
     Passwords need to be protected at all times, and encryption is the standard
@@ -10,13 +10,13 @@ control "V-62293" do
   utilizes LDAP, the LDAP traffic must be encrypted.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000172-AS-000121"
-  tag "gid": "V-62293"
-  tag "rid": "SV-76783r1_rule"
-  tag "stig_id": "JBOS-AS-000310"
-  tag "cci": ["CCI-000197"]
+  tag "gtitle": 'SRG-APP-000172-AS-000121'
+  tag "gid": 'V-62293'
+  tag "rid": 'SV-76783r1_rule'
+  tag "stig_id": 'JBOS-AS-000310'
+  tag "cci": ['CCI-000197']
   tag "documentable": false
-  tag "nist": ["IA-5 (1) (c)", "Rev_4"]
+  tag "nist": ['IA-5 (1) (c)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -47,7 +47,7 @@ control "V-62293" do
   1. Create an outbound connection to the LDAP server.
   2. Create an LDAP-enabled security realm.
   3. Reference the new security domain in the Management Interface."
-  tag "fix_id": "F-68213r1_fix"
+  tag "fix_id": 'F-68213r1_fix'
 
   connect = attribute('connection')
   ldap = attribute('ldap')
