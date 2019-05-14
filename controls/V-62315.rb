@@ -1,10 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
-
 control "V-62315" do
   title "Production Wildfly servers must log when successful application
   deployments occur."
@@ -52,8 +45,11 @@ control "V-62315" do
   connect to the server and run the following command:
   /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)"
   tag "fix_id": "F-68235r1_fix"
+
+  connect = attribute('connection')
+
   describe 'The wildfly server setting: log when successful application deployments occur' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
-  end 
+  end
 end

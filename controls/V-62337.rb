@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62337" do
   title "Wildlfy must be configured to generate log records that show starting
   and ending times for access to the application server management interface."
@@ -57,8 +51,11 @@ control "V-62337" do
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
   tag "fix_id": "F-68257r1_fix"
+
+  connect = attribute('connection')
+
   describe 'The wildfly server setting: generate log records that show starting and ending times for access to the application server management interface' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
-  end  
+  end
 end

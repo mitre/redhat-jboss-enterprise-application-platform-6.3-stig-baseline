@@ -1,16 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
-
-LDAP= attribute(
-  'ldap',
-  description: 'Set to true if ldap is being used',
-  default: 'false'
-)
-
 control "V-62291" do
   title "LDAP enabled security realm value allow-empty-passwords must be set to
   false."
@@ -52,9 +39,13 @@ control "V-62291" do
   JBoss_Enterprise_Application_Platform-6.3-Administration_and_Configuration_Guide-en-US
   document."
   tag "fix_id": "F-68211r1_fix"
-  if LDAP
+
+  connect = attribute('connection')
+  ldap = attribute('ldap')
+
+  if ldap
     describe 'The LDAP enabled security realm value allow-empty-passwords' do
-      subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/security-realm=ldap_security_realm/authentication=ldap").stdout }
+      subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=ldap_security_realm/authentication=ldap").stdout }
       it { should_not match(%r{allow-empty-passwords=true}) }
     end
   else

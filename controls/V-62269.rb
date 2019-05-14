@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62269" do
   title "Remote access to JMX subsystem must be disabled."
   desc  "The JMX subsystem allows you to trigger JDK and application management
@@ -50,9 +44,10 @@ control "V-62269" do
   For a Standalone configuration:
   \"/subsystem=jmx/remoting-connector=jmx:remove\""
   tag "fix_id": "F-68189r1_fix"
-  describe 'The wildfly remote access' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /subsystem=jmx/remoting-connector").stdout }
-    it { should_not match(%r{jmx}) }
-  end 
-end
 
+  connect = attribute('connection')
+  describe 'The wildfly remote access' do
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=jmx/remoting-connector").stdout }
+    it { should_not match(%r{jmx}) }
+  end
+end

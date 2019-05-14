@@ -1,15 +1,3 @@
-WILDFLY_GROUP= attribute(
-  'wildfly_group',
-  description: 'group owner of files/directories',
-  default: 'wildfly'
-)
-
-WILDFLY_OWNER= attribute(
-  'wildly_owner',
-  description: 'user owner of files/directories',
-  default: 'wildfly'
-)
-
 control "V-62251" do
   title "File permissions must be configured to protect log information from
 any type of unauthorized read access."
@@ -63,10 +51,12 @@ finding."
   tag "fix": "Configure the OS file permissions on the application server to
 protect log information from unauthorized read access."
   tag "fix_id": "F-68171r1_fix"
+
+  wildfly_group = attribute('wildfly_group')
+  wildly_owner = attribute('wildly_owner')
   describe directory("/opt/wildfly/standalone/log") do
-    its('owner') { should eq "#{WILDFLY_OWNER}" }
-    its('group') { should eq "#{WILDFLY_GROUP}" }
+    its('owner') { should eq "#{wildly_owner}" }
+    its('group') { should eq "#{wildfly_group}" }
     its('mode') { should cmp '0750' }
   end
 end
-

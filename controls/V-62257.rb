@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62257" do
   title "Wildfly log records must be off-loaded onto a different system or system
 component a minimum of every seven days."
@@ -36,9 +30,10 @@ finding."
   tag "fix": "Configure the application server to off-load log records every
 seven days onto a different system or media from the system being logged."
   tag "fix_id": "F-68177r1_fix"
-  describe "The wildfly syslog-handler configuration" do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout } 
-    it { should_not eq '' }
-  end 
-end
 
+  connect = attribute('connection')
+  describe "The wildfly syslog-handler configuration" do
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout }
+    it { should_not eq '' }
+  end
+end

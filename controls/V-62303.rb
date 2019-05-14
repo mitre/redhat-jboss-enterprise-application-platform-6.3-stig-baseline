@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62303" do
   title "Network access to HTTP management must be disabled on domain-enabled
   application servers not designated as the domain controller."
@@ -50,8 +44,11 @@ control "V-62303" do
   console via web browser at <SERVERNAME>:9990 will result in no access to the
   admin console."
   tag "fix_id": "F-68223r1_fix"
+
+  connect = attribute('connection')
+
   describe 'The wildfly HTTP management interface' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/management-interface=http-interface").stdout }
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface").stdout }
     it { should_not match(%r{console-enabled=true}) }
-  end 
+  end
 end

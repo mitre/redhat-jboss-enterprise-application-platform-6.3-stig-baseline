@@ -1,10 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
-
 control "V-62227" do
   title "The Wildfly server must be configured with Role Based Access Controls."
   desc  "By default, the Wildfly server is not configured to utilize role based
@@ -49,9 +42,11 @@ variables.
 
 role-mapping=ROLENAME/include=ALIAS:add(name-USERNAME, type=USER ROLE)"
   tag "fix_id": "F-68147r1_fix"
-  describe 'The wildfly server authorization access' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=authorization/").stdout }
-    it { should match(%r{provider=rbac}) }
-  end 
-end
 
+  connect = attribute('connection')
+
+  describe 'The wildfly server authorization access' do
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/").stdout }
+    it { should match(%r{provider=rbac}) }
+  end
+end

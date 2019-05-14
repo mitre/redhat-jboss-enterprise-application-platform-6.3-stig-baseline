@@ -1,10 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
-
 control "V-62229" do
   title "Wildfly management interfaces must be secured."
   desc  "Wildfly utilizes the concept of security realms to secure the management
@@ -65,11 +58,14 @@ realm.
 
 Assign the management interfaces to the management realm."
   tag "fix_id": "F-68149r1_fix"
-  mgmt_interfaces = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\ /core-service=management/management-interface=").stdout.split("\n")
+
+  connect = attribute('connection')
+
+  mgmt_interfaces = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\ /core-service=management/management-interface=").stdout.split("\n")
 
   mgmt_interfaces.each do |interface|
     describe "Wildfly management interface: #{interface}" do
-      subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/management-interface=#{interface}").stdout }
+      subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=#{interface}").stdout }
       it { should match(%r{security-realm=ManagementRealm})}
     end
   end
@@ -80,5 +76,3 @@ Assign the management interfaces to the management realm."
     end
   end
 end
-
-

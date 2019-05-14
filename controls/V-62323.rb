@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62323" do
   title "Wildfly must be configured to use an approved cryptographic algorithm in
   conjunction with TLS."
@@ -70,7 +64,9 @@ control "V-62323" do
   3. Set the Cipher to an approved algorithm."
   tag "fix_id": "F-68243r1_fix"
 
-  cipher_suites = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout
+  connect = attribute('connection')
+
+  cipher_suites = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout
   describe.one do
     describe 'The wildfly cryptographic algorithm used for TLS' do
       subject { cipher_suites }
@@ -88,6 +84,5 @@ control "V-62323" do
       subject { cipher_suites }
       it { should match(%r{enabled-cipher-suites=AES_(128|256)_CCM}) }
     end
-  end  
+  end
 end
-

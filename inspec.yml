@@ -5,8 +5,92 @@ copyright: MITRE InSpec Team
 copyright_email: inspec@mitre.org
 license: Apache-2.0
 summary: InSpec profile testing compliance with DISA STIG for JBOSS EAP Wildfly
-description: > 
-  An InSpec profile verifying STIG compliance with JBOSS EAP STIG 
-  http://iasecontent.disa.mil/stigs/zip/U_JBoss_EAP_6-3_V1R2_STIG.zip 
+description: >
+  An InSpec profile verifying STIG compliance with JBOSS EAP STIG
+  http://iasecontent.disa.mil/stigs/zip/U_JBoss_EAP_6-3_V1R2_STIG.zip
   with modifications for Wildfly
 version: 0.1.0
+attributes:
+  - name: connection
+    description: 'Command used to connect to the wildfly instance'
+    type: string
+    default: '--connect'
+
+  - name: auditor_role_users
+    description: 'List of authorized users with the auditor role.'
+    type: array
+    default:
+      - user-auditor
+
+  - name: administrator_role_users
+    description: 'List of authorized users with the administrator role.'
+    type: array
+    default:
+      - user-admin
+
+  - name: superuser_role_users
+    description: 'List of authorized users with the SuperUser role.'
+    type: array
+    default:
+      - user-superuser
+      - user-$local
+
+  - name: wildfly_group
+    description: 'group owner of files/directories'
+    type: string
+    default: 'wildfly'
+
+  - name: wildly_owner
+    description: 'user owner of files/directories'
+    type: string
+    default: 'wildfly'
+
+  - name: approved_applications
+    description: 'List of  authorized applications.'
+    type: array
+    default:
+      -
+
+  - name: wildfly_ports
+    description: 'List of  authorized nginx modules.'
+    type: array
+    default:
+      - jboss.management.http.port=9990
+      - jboss.management.https.port=9993
+      - jboss.http.port=8080
+      - jboss.https.port=8443
+      - jboss.ajp.port=8009
+
+  - name: deployer_role_users
+    description: 'List of authorized users with the deployer role.'
+    type: array
+    default:
+      - user-deployer
+
+  - name: maintainer_role_users
+    description: 'List of authorized users with the maintainer role.'
+    type: array
+    default:
+      - user-maintainer
+
+  - name: monitor_role_users
+    description: 'List of authorized users with the monitor role.'
+    type: array
+    default:
+      - user-monitor
+
+  - name: operator_role_users
+    description: 'List of authorized users with the operator role.'
+    type: array
+    default:
+      - user-operator
+
+  - name: ldap
+    description: 'Set to true if ldap is being used'
+    type: boolean
+    default: false
+
+  - name: high_availability
+    description: 'Set to true if widlfy is being used as a high-availability cluster'
+    type: boolean
+    default: false

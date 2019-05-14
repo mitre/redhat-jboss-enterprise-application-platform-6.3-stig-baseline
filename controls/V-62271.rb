@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62271" do
   title "Welcome Web Application must be disabled."
   desc  "The Welcome to Wildfly web page provides a redirect to the Wildfly admin
@@ -43,9 +37,10 @@ control "V-62271" do
            <context-root>/</context-root>
   </jboss-web>"
   tag "fix_id": "F-68191r1_fix"
-  describe 'The wildfly web application' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /subsystem=undertow/server=default-server/host=default-host/location=\\\/").stdout }
-    it { should_not match(%r{handler=welcome-content}) }
-  end 
-end
 
+  connect = attribute('connection')
+  describe 'The wildfly web application' do
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/host=default-host/location=\\\/").stdout }
+    it { should_not match(%r{handler=welcome-content}) }
+  end
+end

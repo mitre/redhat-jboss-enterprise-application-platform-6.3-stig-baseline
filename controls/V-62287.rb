@@ -1,10 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
-
 control "V-62287" do
   title "The Wildfly Password Vault must be used for storing passwords or other
   sensitive configuration information."
@@ -46,9 +39,11 @@ control "V-62287" do
   3. Configure JBoss to use the password vault."
   tag "fix_id": "F-68207r1_fix"
 
-  code = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=vault").stdout
-  vault_module = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=vault").stdout
-  vault_options = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=vault").stdout
+  connect = attribute('connection')
+
+  code = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
+  vault_module = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
+  vault_options = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
 
   describe 'The wildfly password vault code' do
     subject { code }

@@ -1,16 +1,3 @@
-WILDFLY_PORTS= attribute(
-  'auditor_group_users',
-  description: 'List of  authorized nginx modules.',
-  default: %w[
-            jboss.management.http.port=9990
-            jboss.management.https.port=9993
-            jboss.http.port=8080
-            jboss.https.port=8443
-            jboss.ajp.port=8009
-
-           ]
-)
-
 control "V-62275" do
   title "Wildfly application and management ports must be approved by the PPSM
 CAL."
@@ -62,7 +49,10 @@ Select \"Inbound\"
 
 Select the port that needs to be reconfigured and select \"Edit\"."
   tag "fix_id": "F-68195r1_fix"
-  WILDFLY_PORTS.each do |port|
+
+  wildfly_ports = attribute('wildfly_ports')
+
+  wildfly_ports.each do |port|
     describe file('/opt/wildfly/standalone/configuration/service.properties') do
       its('content') { should include port}
     end

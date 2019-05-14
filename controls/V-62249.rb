@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62249" do
   title "Wildfly ROOT logger must be configured to utilize the appropriate
   logging level."
@@ -73,9 +67,11 @@ control "V-62249" do
   \"/subsystem=logging/root-logger=ROOT:write-attribute(name=level,value=INFO)\""
   tag "fix_id": "F-68169r1_fix"
 
-  get_logging_level = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /subsystem=logging/root-logger=ROOT").stdout
+  connect = attribute('connection')
 
-  describe.one do 
+  get_logging_level = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/root-logger=ROOT").stdout
+
+  describe.one do
     describe 'The wildfly root logger level' do
       subject { get_logging_level }
       it { should match(%r{level=INFO}) }
@@ -90,4 +86,3 @@ control "V-62249" do
     end
   end
 end
-

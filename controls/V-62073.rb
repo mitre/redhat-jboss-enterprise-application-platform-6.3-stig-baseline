@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62073" do
   title "HTTP management session traffic must be encrypted."
   desc  "
@@ -51,9 +45,11 @@ This involves the following steps.
 5. Configure the management console to use the keystore.
 6. Restart the EAP server."
   tag "fix_id": "F-67993r1_fix"
-  describe 'The wildfly HTTP management session traffic configuration' do
-  subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/management-interface=http-interface").stdout }
-    it { should_not match /secure-socket-binding=undefined/ }
-  end 
-end
 
+  connect = attribute('connection')
+
+  describe 'The wildfly HTTP management session traffic configuration' do
+  subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface").stdout }
+    it { should_not match /secure-socket-binding=undefined/ }
+  end
+end

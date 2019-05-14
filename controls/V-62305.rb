@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62305" do
   title "The application server must prevent non-privileged users from
   executing privileged functions to include disabling, circumventing, or altering
@@ -52,9 +46,11 @@ control "V-62305" do
 
   role-mapping=ROLENAME/include=ALIAS:add(name-USERNAME, type=USER ROLE)"
   tag "fix_id": "F-68225r1_fix"
-  describe "The wildfly application server's access authorization" do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=authorization/").stdout }
-    it { should match(%r{provider=rbac}) }
-  end 
-end
 
+  connect = attribute('connection')
+
+  describe "The wildfly application server's access authorization" do
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/").stdout }
+    it { should match(%r{provider=rbac}) }
+  end
+end

@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62321" do
   title "Wildfly must be configured to use an approved TLS version."
   desc  "
@@ -59,8 +53,11 @@ control "V-62321" do
   2. Configure the SSL encryption certificate and keys.
   3. Set the protocol to TLS V1.1 or V1.2."
   tag "fix_id": "F-68241r1_fix"
+
+  connect = attribute('connection')
+
   describe 'The wildfly enabled TLS versions' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout }
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout }
     it { should match(%r{enabled-protocols=TLSv1.[12]:TLSv1.[12]}) }
   end
 end

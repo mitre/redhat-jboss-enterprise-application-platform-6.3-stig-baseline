@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62333" do
   title "Wildfly must be configured to generate log records when
   successful/unsuccessful logon attempts occur."
@@ -51,8 +45,11 @@ control "V-62333" do
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
   tag "fix_id": "F-68253r1_fix"
+
+  connect = attribute('connection')
+
   describe 'The wildfly setting: generate log records when successful/unsuccessful logon attempts occur' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
-  end  
+  end
 end

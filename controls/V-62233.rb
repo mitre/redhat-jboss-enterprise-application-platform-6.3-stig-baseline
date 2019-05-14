@@ -1,18 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
-
-AUDITOR_ROLE_USERS= attribute(
-  'auditor_group_users',
-  description: 'List of  authorized auditor users.',
-  default: %w[
-            user-auditor 
-           ]
-)
-
 control "V-62233" do
   title "Wildfly must be configured to allow only the ISSM (or individuals or
 roles appointed by the ISSM) to select which loggable events are to be logged."
@@ -54,18 +39,22 @@ a finding."
   tag "fix": "Obtain documented approvals from ISSM, and assign the appropriate
 personnel into the \"Auditor\" role."
   tag "fix_id": "F-68153r1_fix"
-  auditor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\ /core-service=management/access=authorization/role-mapping=Auditor/include=").stdout.split("\n")
+
+  connect = attribute('connection')
+  auditor_role_users = attribute('auditor_role_users')
+
+  auditor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\ /core-service=management/access=authorization/role-mapping=Auditor/include=").stdout.split("\n")
 
   auditor_role.each do |user|
     a = user.strip
     describe "#{a}" do
-      it { should be_in AUDITOR_ROLE_USERS}
-    end  
+      it { should be_in auditor_role_users}
+    end
   end
   if auditor_role.empty?
     impact 0.0
     describe 'There are no wildfly users with the auditor role, therefore this control is not applicable' do
       skip 'There are no wildfly users with the auditor role, therefore this control is not applicable'
     end
-  end   
+  end
 end
