@@ -1,4 +1,4 @@
-control "V-62233" do
+control 'V-62233' do
   title "Wildfly must be configured to allow only the ISSM (or individuals or
 roles appointed by the ISSM) to select which loggable events are to be logged."
   desc  "
@@ -10,13 +10,13 @@ the role of selecting which loggable events are to be logged.
 (or individuals or roles appointed by the ISSM).
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000090-AS-000051"
-  tag "gid": "V-62233"
-  tag "rid": "SV-76723r1_rule"
-  tag "stig_id": "JBOS-AS-000085"
-  tag "cci": ["CCI-000171"]
+  tag "gtitle": 'SRG-APP-000090-AS-000051'
+  tag "gid": 'V-62233'
+  tag "rid": 'SV-76723r1_rule'
+  tag "stig_id": 'JBOS-AS-000085'
+  tag "cci": ['CCI-000171']
   tag "documentable": false
-  tag "nist": ["AU-12 b", "Rev_4"]
+  tag "nist": ['AU-12 b', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly.
 Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -38,7 +38,7 @@ If the list of users in the Auditors group is not approved by the ISSM, this is
 a finding."
   tag "fix": "Obtain documented approvals from ISSM, and assign the appropriate
 personnel into the \"Auditor\" role."
-  tag "fix_id": "F-68153r1_fix"
+  tag "fix_id": 'F-68153r1_fix'
 
   connect = attribute('connection')
   auditor_role_users = attribute('auditor_role_users')
@@ -48,7 +48,7 @@ personnel into the \"Auditor\" role."
   auditor_role.each do |user|
     a = user.strip
     describe "#{a}" do
-      it { should be_in auditor_role_users}
+      it { should be_in auditor_role_users }
     end
   end
   if auditor_role.empty?

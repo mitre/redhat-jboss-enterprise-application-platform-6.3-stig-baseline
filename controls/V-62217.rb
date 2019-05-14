@@ -1,4 +1,4 @@
-control "V-62217" do
+control 'V-62217' do
   title "Java permissions must be set for hosted applications."
   desc  "
     The Java Security Manager is a java class that manages the external
@@ -12,13 +12,13 @@ control "V-62217" do
   system.
   "
   impact 0.7
-  tag "gtitle": "SRG-APP-000033-AS-000024"
-  tag "gid": "V-62217"
-  tag "rid": "SV-76707r1_rule"
-  tag "stig_id": "JBOS-AS-000025"
-  tag "cci": ["CCI-000213"]
+  tag "gtitle": 'SRG-APP-000033-AS-000024'
+  tag "gid": 'V-62217'
+  tag "rid": 'SV-76707r1_rule'
+  tag "stig_id": 'JBOS-AS-000025'
+  tag "cci": ['CCI-000213']
   tag "documentable": false
-  tag "nist": ["AC-3", "Rev_4"]
+  tag "nist": ['AC-3', 'Rev_4']
   tag "check": "Obtain documentation from the admin that identifies the
   applications hosted on the JBoss server as well as the corresponding rights the
   application requires.  For example, if the application requires network socket
@@ -46,7 +46,7 @@ control "V-62217" do
   tag "fix": "Configure the Java security manager to enforce access
   restrictions to the host system resources in accordance with application design
   and resource requirements."
-  tag "fix_id": "F-68137r1_fix"
+  tag "fix_id": 'F-68137r1_fix'
   describe.one do
     describe file('/opt/wildfly/bin/standalone.conf') do
       its('content') { should match(%r{JAVA_OPTS="\$JAVA_OPTS -Djavax.security.policy=\/usr\/lib\/jvm\/java\-1.8.0\/jre\/lib\/security\/java.policy"}) }
@@ -56,6 +56,3 @@ control "V-62217" do
     end
   end
 end
-
-
-

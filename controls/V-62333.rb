@@ -1,4 +1,4 @@
-control "V-62333" do
+control 'V-62333' do
   title "Wildfly must be configured to generate log records when
   successful/unsuccessful logon attempts occur."
   desc  "
@@ -12,13 +12,13 @@ control "V-62333" do
   no longer in use.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000503-AS-000228"
-  tag "gid": "V-62333"
-  tag "rid": "SV-76823r1_rule"
-  tag "stig_id": "JBOS-AS-000700"
-  tag "cci": ["CCI-000172"]
+  tag "gtitle": 'SRG-APP-000503-AS-000228'
+  tag "gid": 'V-62333'
+  tag "rid": 'SV-76823r1_rule'
+  tag "stig_id": 'JBOS-AS-000700'
+  tag "cci": ['CCI-000172']
   tag "documentable": false
-  tag "nist": ["AU-12 c", "Rev_4"]
+  tag "nist": ['AU-12 c', 'Rev_4']
   tag "check": "Log on to the OS of the JBoss server with OS permissions that
   allow access to JBoss.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -44,7 +44,7 @@ control "V-62333" do
 
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68253r1_fix"
+  tag "fix_id": 'F-68253r1_fix'
 
   connect = attribute('connection')
 

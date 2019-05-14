@@ -1,4 +1,4 @@
-control "V-62337" do
+control 'V-62337' do
   title "Wildlfy must be configured to generate log records that show starting
   and ending times for access to the application server management interface."
   desc  "
@@ -15,13 +15,13 @@ control "V-62337" do
   perform their due diligence in the event of a security breach.
     "
   impact 0.5
-  tag "gtitle": "SRG-APP-000505-AS-000230"
-  tag "gid": "V-62337"
-  tag "rid": "SV-76827r1_rule"
-  tag "stig_id": "JBOS-AS-000710"
-  tag "cci": ["CCI-000172"]
+  tag "gtitle": 'SRG-APP-000505-AS-000230'
+  tag "gid": 'V-62337'
+  tag "rid": 'SV-76827r1_rule'
+  tag "stig_id": 'JBOS-AS-000710'
+  tag "cci": ['CCI-000172']
   tag "documentable": false
-  tag "nist": ["AU-12 c", "Rev_4"]
+  tag "nist": ['AU-12 c', 'Rev_4']
   tag "check": "Log on to the OS of the Wildlfy server with OS permissions that
   allow access to Wildlfy.
 
@@ -50,7 +50,7 @@ control "V-62337" do
 
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68257r1_fix"
+  tag "fix_id": 'F-68257r1_fix'
 
   connect = attribute('connection')
 

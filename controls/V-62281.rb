@@ -1,4 +1,4 @@
-control "V-62281" do
+control 'V-62281' do
   title "The Wildfly server must be configured to use individual accounts and not
   generic or shared accounts."
   desc  "
@@ -14,13 +14,13 @@ control "V-62281" do
   that there is non-repudiation for actions taken.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000153-AS-000104"
-  tag "gid": "V-62281"
-  tag "rid": "SV-76771r1_rule"
-  tag "stig_id": "JBOS-AS-000275"
-  tag "cci": ["CCI-000770"]
+  tag "gtitle": 'SRG-APP-000153-AS-000104'
+  tag "gid": 'V-62281'
+  tag "rid": 'SV-76771r1_rule'
+  tag "stig_id": 'JBOS-AS-000275'
+  tag "cci": ['CCI-000770']
   tag "documentable": false
-  tag "nist": ["IA-2 (5)", "Rev_4"]
+  tag "nist": ['IA-2 (5)', 'Rev_4']
   tag "check": "If the application server management interface is configured to
   use LDAP authentication this requirement is NA.
 
@@ -57,7 +57,7 @@ control "V-62281" do
   tag "fix": "Configure the application server so required users are
   individually authenticated by creating individual user accounts.  Utilize an
   LDAP server that is configured according to DOD policy."
-  tag "fix_id": "F-68201r1_fix"
+  tag "fix_id": 'F-68201r1_fix'
 
   connect = attribute('connection')
   auditor_role_users = attribute('auditor_role_users')
@@ -98,7 +98,7 @@ control "V-62281" do
     superuser_role.each do |user|
       describe "User: #{user} with the SuperUser role" do
         subject { user }
-        it { should be_in superuser_role_users}
+        it { should be_in superuser_role_users }
       end
     end
   end
@@ -107,7 +107,7 @@ control "V-62281" do
     deployer_role.each do |user|
       describe "User: #{user} with the deployer role" do
         subject { user }
-       it { should be_in deployer_role_users}
+       it { should be_in deployer_role_users }
       end
     end
   end
@@ -116,7 +116,7 @@ control "V-62281" do
     maintainer_role.each do |user|
       describe "User: #{user} with the maintainer role" do
         subject { user }
-        it { should be_in maintainer_role_users}
+        it { should be_in maintainer_role_users }
       end
     end
   end
@@ -125,7 +125,7 @@ control "V-62281" do
     monitor_role.each do |user|
       describe "User: #{user} with the monitor role" do
         subject { user }
-        it { should be_in monitor_role_users}
+        it { should be_in monitor_role_users }
       end
     end
   end
@@ -134,7 +134,7 @@ control "V-62281" do
     operator_role.each do |user|
       describe "User: #{user} with the operator role" do
         subject { user }
-        it { should be_in operator_role_users}
+        it { should be_in operator_role_users }
       end
     end
   end

@@ -1,4 +1,4 @@
-control "V-62275" do
+control 'V-62275' do
   title "Wildfly application and management ports must be approved by the PPSM
 CAL."
   desc  "
@@ -16,13 +16,13 @@ protocols, reference the DoD ports and protocols website at
 https://powhatan.iiie.disa.mil/ports/cal.html.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000142-AS-000014"
-  tag "gid": "V-62275"
-  tag "rid": "SV-76765r1_rule"
-  tag "stig_id": "JBOS-AS-000255"
-  tag "cci": ["CCI-000382"]
+  tag "gtitle": 'SRG-APP-000142-AS-000014'
+  tag "gid": 'V-62275'
+  tag "rid": 'SV-76765r1_rule'
+  tag "stig_id": 'JBOS-AS-000255'
+  tag "cci": ['CCI-000382']
   tag "documentable": false
-  tag "nist": ["CM-7 b", "Rev_4"]
+  tag "nist": ['CM-7 b', 'Rev_4']
   tag "check": "Open the EAP web console by pointing a web browser to
 HTTPS://<Servername>:9443 or HTTP://<Servername>:9990
 
@@ -48,13 +48,13 @@ Select the \"View\" option next to \"standard-sockets\"
 Select \"Inbound\"
 
 Select the port that needs to be reconfigured and select \"Edit\"."
-  tag "fix_id": "F-68195r1_fix"
+  tag "fix_id": 'F-68195r1_fix'
 
   wildfly_ports = attribute('wildfly_ports')
 
   wildfly_ports.each do |port|
     describe file('/opt/wildfly/standalone/configuration/service.properties') do
-      its('content') { should include port}
+      its('content') { should include port }
     end
     describe file('/opt/wildfly/standalone/configuration/service.properties') do
       it { should exist}

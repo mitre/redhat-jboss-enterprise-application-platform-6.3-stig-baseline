@@ -1,4 +1,4 @@
-control "V-62283" do
+control 'V-62283' do
   title "The Wildfly server must be configured to bind the management interfaces
   to only management networks."
   desc  "Wildfly provides multiple interfaces for accessing the system.  By
@@ -10,13 +10,13 @@ control "V-62283" do
   access.  Similarly, the public interface must be bound to a network that is not
   on the same segment as the management interface."
   impact 0.5
-  tag "gtitle": "SRG-APP-000158-AS-000108"
-  tag "gid": "V-62283"
-  tag "rid": "SV-76773r1_rule"
-  tag "stig_id": "JBOS-AS-000285"
-  tag "cci": ["CCI-000778"]
+  tag "gtitle": 'SRG-APP-000158-AS-000108'
+  tag "gid": 'V-62283'
+  tag "rid": 'SV-76773r1_rule'
+  tag "stig_id": 'JBOS-AS-000285'
+  tag "cci": ['CCI-000778']
   tag "documentable": false
-  tag "nist": ["IA-3", "Rev_4"]
+  tag "nist": ['IA-3', 'Rev_4']
   tag "check": "Obtain documentation and network drawings from system admin
   that shows the network interfaces on the Wildfly server and the networks they are
   configured for.
@@ -59,14 +59,14 @@ control "V-62283" do
   If a management network is not available, you may substitute
   localhost/127.0.0.1 for management address.  This will force you to manage the
   Wildfly server from the local host."
-  tag "fix_id": "F-68203r1_fix"
-  
+  tag "fix_id": 'F-68203r1_fix'
+
   bind_mgmt_address = command("grep jboss.bind.address.management /opt/wildfly/standalone/configuration/service.properties | awk -F'=' '{print $2}' ").stdout
   public_bind_address = command("grep jboss.bind.address /opt/wildfly/standalone/configuration/service.properties | grep -v management | awk -F'=' '{print $2}' ").stdout
- 
+
   bind_mgmt_address = command("grep jboss.bind.address.management /opt/wildfly/standalone/configuration/service.properties | awk -F'=' '{print $2}' ").stdout
   public_bind_address = command("grep jboss.bind.address /opt/wildfly/standalone/configuration/service.properties | grep -v management | awk -F'=' '{print $2}' ").stdout
-  
+
   describe 'The wildfly bind address' do
     subject { bind_mgmt_address }
     it { should_not eq public_bind_address }

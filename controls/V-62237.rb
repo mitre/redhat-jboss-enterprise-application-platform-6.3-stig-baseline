@@ -1,4 +1,4 @@
-control "V-62237" do
+control 'V-62237' do
   title "Wildfly must be configured to log the IP address of the remote system
   connecting to the Wildfly system/cluster."
   desc  "
@@ -18,13 +18,13 @@ control "V-62237" do
   server-related system process activity.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000095-AS-000056"
-  tag "gid": "V-62237"
-  tag "rid": "SV-76727r1_rule"
-  tag "stig_id": "JBOS-AS-000105"
-  tag "cci": ["CCI-000130"]
+  tag "gtitle": 'SRG-APP-000095-AS-000056'
+  tag "gid": 'V-62237'
+  tag "rid": 'SV-76727r1_rule'
+  tag "stig_id": 'JBOS-AS-000105'
+  tag "cci": ['CCI-000130']
   tag "documentable": false
-  tag "nist": ["AU-3", "Rev_4"]
+  tag "nist": ['AU-3', 'Rev_4']
   tag "check": "Log on to the OS of the Wildlfy server with OS permissions that
   allow access to Wildlfy.
 
@@ -52,7 +52,7 @@ For a Managed Domain configuration:
 
 For a Standalone configuration:
 \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68157r1_fix"
+  tag "fix_id": 'F-68157r1_fix'
 
   connect = attribute('connection')
 

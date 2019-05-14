@@ -1,4 +1,4 @@
-control "V-62239" do
+control 'V-62239' do
   title "Wildfly must be configured to produce log records containing information
 to establish what type of events occurred."
   desc  "
@@ -18,13 +18,13 @@ Java Virtual Machine (JVM) activity, HTTPD/Web server activity, and application
 server-related system process activity.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000095-AS-000056"
-  tag "gid": "V-62239"
-  tag "rid": "SV-76729r1_rule"
-  tag "stig_id": "JBOS-AS-000110"
-  tag "cci": ["CCI-000130"]
+  tag "gtitle": 'SRG-APP-000095-AS-000056'
+  tag "gid": 'V-62239'
+  tag "rid": 'SV-76729r1_rule'
+  tag "stig_id": 'JBOS-AS-000110'
+  tag "cci": ['CCI-000130']
   tag "documentable": false
-  tag "nist": ["AU-3", "Rev_4"]
+  tag "nist": ['AU-3', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly.
 
@@ -52,7 +52,7 @@ For a Managed Domain configuration:
 
 For a Standalone configuration:
 \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68159r1_fix"
+  tag "fix_id": 'F-68159r1_fix'
 
   connect = attribute('connection')
 

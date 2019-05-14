@@ -1,4 +1,4 @@
-control "V-62313" do
+control 'V-62313' do
   title "Production Wildfly servers must log when failed application deployments
   occur."
   desc  "
@@ -17,13 +17,13 @@ control "V-62313" do
   blocked by access restrictions or changes identified after the fact.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000381-AS-000089"
-  tag "gid": "V-62313"
-  tag "rid": "SV-76803r1_rule"
-  tag "stig_id": "JBOS-AS-000550"
-  tag "cci": ["CCI-001814"]
+  tag "gtitle": 'SRG-APP-000381-AS-000089'
+  tag "gid": 'V-62313'
+  tag "rid": 'SV-76803r1_rule'
+  tag "stig_id": 'JBOS-AS-000550'
+  tag "cci": ['CCI-001814']
   tag "documentable": false
-  tag "nist": ["CM-5 (1)", "Rev_4"]
+  tag "nist": ['CM-5 (1)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -45,7 +45,7 @@ control "V-62313" do
   connect to the server and run the following command:
 
   /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)"
-  tag "fix_id": "F-68233r1_fix"
+  tag "fix_id": 'F-68233r1_fix'
 
   connect = attribute('connection')
 

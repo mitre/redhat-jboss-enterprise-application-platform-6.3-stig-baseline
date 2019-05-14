@@ -1,4 +1,4 @@
-control "V-62247" do
+control 'V-62247' do
   title "The application server must produce log records that contain
 sufficient information to establish the outcome of events."
   desc  "
@@ -16,13 +16,13 @@ appropriate response.  Event outcome may also include event-specific results
 (e.g., the security state of the information system after the event occurred).
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000099-AS-000062"
-  tag "gid": "V-62247"
-  tag "rid": "SV-76737r1_rule"
-  tag "stig_id": "JBOS-AS-000130"
-  tag "cci": ["CCI-000134"]
+  tag "gtitle": 'SRG-APP-000099-AS-000062'
+  tag "gid": 'V-62247'
+  tag "rid": 'SV-76737r1_rule'
+  tag "stig_id": 'JBOS-AS-000130'
+  tag "cci": ['CCI-000134']
   tag "documentable": false
-  tag "nist": ["AU-3", "Rev_4"]
+  tag "nist": ['AU-3', 'Rev_4']
   tag "check": "Log on to the OS of the wildfly server with OS permissions that
 allow access to Wildfly.
 
@@ -50,7 +50,7 @@ For a Managed Domain configuration:
 
 For a Standalone configuration:
 \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68167r1_fix"
+  tag "fix_id": 'F-68167r1_fix'
 
   connect = attribute('connection')
 

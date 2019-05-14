@@ -1,4 +1,4 @@
-control "V-62215" do
+control 'V-62215' do
   title "HTTPS must be enabled for Wildfly web interfaces."
   desc  "
     Encryption is critical for protection of remote access sessions. If
@@ -21,13 +21,13 @@ versions must be disabled.
 systems.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000015-AS-000010"
-  tag "gid": "V-62215"
-  tag "rid": "SV-76705r1_rule"
-  tag "stig_id": "JBOS-AS-000015"
-  tag "cci": ["CCI-001453"]
+  tag "gtitle": 'SRG-APP-000015-AS-000010'
+  tag "gid": 'V-62215'
+  tag "rid": 'SV-76705r1_rule'
+  tag "stig_id": 'JBOS-AS-000015'
+  tag "cci": ['CCI-001453']
   tag "documentable": false
-  tag "nist": ["AC-17 (2)", "Rev_4"]
+  tag "nist": ['AC-17 (2)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
 allow access to Wildfly.
 
@@ -56,7 +56,7 @@ here.
 1. Obtain or generate DoD-approved SSL certificates.
 2. Configure the SSL certificate using your certificate values.
 3. Set the SSL protocol to TLS V1.1 or V1.2."
-  tag "fix_id": "F-68135r1_fix"
+  tag "fix_id": 'F-68135r1_fix'
 
   connect = attribute('connection')
 

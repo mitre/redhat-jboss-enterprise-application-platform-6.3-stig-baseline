@@ -1,4 +1,4 @@
-control "V-62249" do
+control 'V-62249' do
   title "Wildfly ROOT logger must be configured to utilize the appropriate
   logging level."
   desc  "
@@ -18,13 +18,13 @@ control "V-62249" do
   provide adequate log information.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000100-AS-000063"
-  tag "gid": "V-62249"
-  tag "rid": "SV-76739r1_rule"
-  tag "stig_id": "JBOS-AS-000135"
-  tag "cci": ["CCI-001487"]
+  tag "gtitle": 'SRG-APP-000100-AS-000063'
+  tag "gid": 'V-62249'
+  tag "rid": 'SV-76739r1_rule'
+  tag "stig_id": 'JBOS-AS-000135'
+  tag "cci": ['CCI-001487']
   tag "documentable": false
-  tag "nist": ["AU-3", "Rev_4"]
+  tag "nist": ['AU-3', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
 
@@ -65,7 +65,7 @@ control "V-62249" do
 
   For a Standalone configuration:
   \"/subsystem=logging/root-logger=ROOT:write-attribute(name=level,value=INFO)\""
-  tag "fix_id": "F-68169r1_fix"
+  tag "fix_id": 'F-68169r1_fix'
 
   connect = attribute('connection')
 

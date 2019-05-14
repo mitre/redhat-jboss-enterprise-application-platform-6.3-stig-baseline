@@ -1,4 +1,4 @@
-control "V-62329" do
+control 'V-62329' do
   title "Wildfly must be configured to generate log records when
   successful/unsuccessful attempts to modify privileges occur."
   desc  "Changing privileges of a subject/object may cause a subject/object to
@@ -7,13 +7,13 @@ control "V-62329" do
   modification can be investigated to determine if it was performed inadvertently
   or maliciously."
   impact 0.5
-  tag "gtitle": "SRG-APP-000495-AS-000220"
-  tag "gid": "V-62329"
-  tag "rid": "SV-76819r1_rule"
-  tag "stig_id": "JBOS-AS-000690"
-  tag "cci": ["CCI-000172"]
+  tag "gtitle": 'SRG-APP-000495-AS-000220'
+  tag "gid": 'V-62329'
+  tag "rid": 'SV-76819r1_rule'
+  tag "stig_id": 'JBOS-AS-000690'
+  tag "cci": ['CCI-000172']
   tag "documentable": false
-  tag "nist": ["AU-12 c", "Rev_4"]
+  tag "nist": ['AU-12 c', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
 
@@ -43,7 +43,7 @@ control "V-62329" do
 
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68249r1_fix"
+  tag "fix_id": 'F-68249r1_fix'
 
   connect = attribute('connection')
 

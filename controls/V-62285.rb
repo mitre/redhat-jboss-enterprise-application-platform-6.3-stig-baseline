@@ -1,4 +1,4 @@
-control "V-62285" do
+control 'V-62285' do
   title "Wildfly management Interfaces must be integrated with a centralized
   authentication mechanism that is configured to manage accounts according to DoD
   policy."
@@ -18,13 +18,13 @@ control "V-62285" do
   with an individual.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000163-AS-000111"
-  tag "gid": "V-62285"
-  tag "rid": "SV-76775r1_rule"
-  tag "stig_id": "JBOS-AS-000290"
-  tag "cci": ["CCI-000795"]
+  tag "gtitle": 'SRG-APP-000163-AS-000111'
+  tag "gid": 'V-62285'
+  tag "rid": 'SV-76775r1_rule'
+  tag "stig_id": 'JBOS-AS-000290'
+  tag "cci": ['CCI-000795']
   tag "documentable": false
-  tag "nist": ["IA-4 e", "Rev_4"]
+  tag "nist": ['IA-4 e', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -55,7 +55,7 @@ control "V-62285" do
   1. Create an outbound connection to the LDAP server.
   2. Create an LDAP-enabled security realm.
   3. Reference the new security domain in the Management Interface."
-  tag "fix_id": "F-68205r1_fix"
+  tag "fix_id": 'F-68205r1_fix'
 
   ldap = attribute('ldap')
   connect = attribute('connection')
@@ -65,10 +65,10 @@ control "V-62285" do
   management_interfaces.each do |interface|
 
     security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
-     security_realms.each do |realm|
+    security_realms.each do |realm|
       describe "The security realm #{realm} authentication mechanism" do
         subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect}  --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout }
-        it { should match /ldap/}
+        it { should match /ldap/ }
       end
     end
   end

@@ -1,4 +1,4 @@
-control "V-62299" do
+control 'V-62299' do
   title "Wildfly file permissions must be configured to protect the
   confidentiality and integrity of application files."
   desc  "
@@ -16,13 +16,13 @@ control "V-62299" do
   Steps must be taken to ensure data stored on the device is protected.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000231-AS-000133"
-  tag "gid": "V-62299"
-  tag "rid": "SV-76789r1_rule"
-  tag "stig_id": "JBOS-AS-000400"
-  tag "cci": ["CCI-001199"]
+  tag "gtitle": 'SRG-APP-000231-AS-000133'
+  tag "gid": 'V-62299'
+  tag "rid": 'SV-76789r1_rule'
+  tag "stig_id": 'JBOS-AS-000400'
+  tag "cci": ['CCI-001199']
   tag "documentable": false
-  tag "nist": ["SC-28", "Rev_4"]
+  tag "nist": ['SC-28', 'Rev_4']
   tag "check": "By default, Wildfly installs its files into a folder called
   \"wildfly\".   This folder by default is stored within the home folder of
   the Wildfly user account.  The installation process, however, allows for the
@@ -43,7 +43,7 @@ control "V-62299" do
   If the Wildfly folder is world readable or world writable, this is a finding."
   tag "fix": "Configure file permissions on the Wildfly folder to protect from
   unauthorized access."
-  tag "fix_id": "F-68219r1_fix"
+  tag "fix_id": 'F-68219r1_fix'
   describe directory('/opt/wildfly/') do
     it { should_not be_readable.by('others') }
   end

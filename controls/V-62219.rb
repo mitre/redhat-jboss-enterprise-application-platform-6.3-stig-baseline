@@ -1,4 +1,4 @@
-control "V-62219" do
+control 'V-62219' do
   title "Users in JBoss Management Security Realms must be in the appropriate role"
   desc  "
     Security realms are a series of mappings between users and passwords and
@@ -16,13 +16,13 @@ but only when role-based access controls  (RBAC) is enabled.
 JBoss resources can occur.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000033-AS-000024"
-  tag "gid": "V-62219"
-  tag "rid": "SV-76709r1_rule"
-  tag "stig_id": "JBOS-AS-000040"
-  tag "cci": ["CCI-000213"]
+  tag "gtitle": 'SRG-APP-000033-AS-000024'
+  tag "gid": 'V-62219'
+  tag "rid": 'SV-76709r1_rule'
+  tag "stig_id": 'JBOS-AS-000040'
+  tag "cci": ['CCI-000213']
   tag "documentable": false
-  tag "nist": ["AC-3", "Rev_4"]
+  tag "nist": ['AC-3', 'Rev_4']
   tag "check": "Review the mgmt-users.properties file.   Also review the
 <management /> section in the standalone.xml or domain.xml configuration files.
  The relevant xml file will depend on if the Wildfly server is configured in
@@ -45,7 +45,7 @@ If the users listed are not in the appropriate role, this is a finding."
   tag "fix": "Document approved management users and their roles.  Configure
 the application server to use RBAC and ensure users are placed into the
 appropriate roles."
-  tag "fix_id": "F-68139r1_fix"
+  tag "fix_id": 'F-68139r1_fix'
 
   connect = attribute('connection')
   auditor_role_users = attribute('auditor_role_users')
@@ -60,7 +60,7 @@ appropriate roles."
   if !auditor_role.empty?
     auditor_role.each do |user|
       describe "#{user}" do
-        it { should be_in auditor_role_users}
+        it { should be_in auditor_role_users }
       end
     end
   end
@@ -68,7 +68,7 @@ appropriate roles."
   if !administrator_role.empty?
     administrator_role.each do |user|
       describe "#{user}" do
-        it { should be_in administrator_role_users}
+        it { should be_in administrator_role_users }
       end
     end
   end
@@ -76,7 +76,7 @@ appropriate roles."
   if !superuser_role.empty?
     superuser_role.each do |user|
      describe "#{user}" do
-        it { should be_in superuser_role_users}
+        it { should be_in superuser_role_users }
       end
     end
   end

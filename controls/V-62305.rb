@@ -1,4 +1,4 @@
-control "V-62305" do
+control 'V-62305' do
   title "The application server must prevent non-privileged users from
   executing privileged functions to include disabling, circumventing, or altering
   implemented security safeguards/countermeasures."
@@ -12,13 +12,13 @@ control "V-62305" do
   accounts, and performing system checks and maintenance.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000340-AS-000185"
-  tag "gid": "V-62305"
-  tag "rid": "SV-76795r1_rule"
-  tag "stig_id": "JBOS-AS-000475"
-  tag "cci": ["CCI-002235"]
+  tag "gtitle": 'SRG-APP-000340-AS-000185'
+  tag "gid": 'V-62305'
+  tag "rid": 'SV-76795r1_rule'
+  tag "stig_id": 'JBOS-AS-000475'
+  tag "cci": ['CCI-002235']
   tag "documentable": false
-  tag "nist": ["AC-6 (10)", "Rev_4"]
+  tag "nist": ['AC-6 (10)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -45,7 +45,7 @@ control "V-62305" do
   variables.
 
   role-mapping=ROLENAME/include=ALIAS:add(name-USERNAME, type=USER ROLE)"
-  tag "fix_id": "F-68225r1_fix"
+  tag "fix_id": 'F-68225r1_fix'
 
   connect = attribute('connection')
 

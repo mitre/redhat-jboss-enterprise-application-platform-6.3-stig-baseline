@@ -1,4 +1,4 @@
-control "V-62231" do
+control 'V-62231' do
   title "The Wildfly server must generate log records for access and
   authentication events to the management interface."
   desc  "
@@ -12,13 +12,13 @@ control "V-62231" do
   setting meets several STIG auditing requirements.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000089-AS-000050"
-  tag "gid": "V-62231"
-  tag "rid": "SV-76721r1_rule"
-  tag "stig_id": "JBOS-AS-000080"
-  tag "cci": ["CCI-000169"]
+  tag "gtitle": 'SRG-APP-000089-AS-000050'
+  tag "gid": 'V-62231'
+  tag "rid": 'SV-76721r1_rule'
+  tag "stig_id": 'JBOS-AS-000080'
+  tag "cci": ['CCI-000169']
   tag "documentable": false
-  tag "nist": ["AU-12 a", "Rev_4"]
+  tag "nist": ['AU-12 a', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -47,7 +47,7 @@ control "V-62231" do
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
 
-  tag "fix_id": "F-68151r1_fix"
+  tag "fix_id": 'F-68151r1_fix'
 
   connect = attribute('connection')
 

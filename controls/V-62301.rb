@@ -1,4 +1,4 @@
-control "V-62301" do
+control 'V-62301' do
   title "Access to Wildfly log files must be restricted to authorized users."
   desc  "
     If the application provides too much information in error logs and
@@ -19,13 +19,13 @@ control "V-62301" do
   permissions are utilized when the log files are created.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000267-AS-000170"
-  tag "gid": "V-62301"
-  tag "rid": "SV-76791r1_rule"
-  tag "stig_id": "JBOS-AS-000425"
-  tag "cci": ["CCI-001314"]
+  tag "gtitle": 'SRG-APP-000267-AS-000170'
+  tag "gid": 'V-62301'
+  tag "rid": 'SV-76791r1_rule'
+  tag "stig_id": 'JBOS-AS-000425'
+  tag "cci": ['CCI-001314']
   tag "documentable": false
-  tag "nist": ["SI-11 b", "Rev_4"]
+  tag "nist": ['SI-11 b', 'Rev_4']
   tag "check": "If the Wildfly log folder is installed in the default location
   and AS-000133-JBOSS-00079 is not a finding, the log folders are protected and
   this requirement is not a finding.
@@ -71,7 +71,7 @@ control "V-62301" do
   finding."
   tag "fix": "Configure file permissions on the Wildfly log folder to protect
   from unauthorized access."
-  tag "fix_id": "F-68221r1_fix"
+  tag "fix_id": 'F-68221r1_fix'
   describe directory('/opt/wildfly/standalone/log') do
     it { should_not be_readable.by 'others' }
   end

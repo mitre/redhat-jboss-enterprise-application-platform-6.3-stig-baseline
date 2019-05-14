@@ -1,4 +1,4 @@
-control "V-62341" do
+control 'V-62341' do
   title "Wildlfy must be configured to generate log records for all account
   creations, modifications, disabling, and termination events."
   desc  "
@@ -15,13 +15,13 @@ control "V-62341" do
   disabling, and termination.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000509-AS-000234"
-  tag "gid": "V-62341"
-  tag "rid": "SV-76831r1_rule"
-  tag "stig_id": "JBOS-AS-000720"
-  tag "cci": ["CCI-000172"]
+  tag "gtitle": 'SRG-APP-000509-AS-000234'
+  tag "gid": 'V-62341'
+  tag "rid": 'SV-76831r1_rule'
+  tag "stig_id": 'JBOS-AS-000720'
+  tag "cci": ['CCI-000172']
   tag "documentable": false
-  tag "nist": ["AU-12 c", "Rev_4"]
+  tag "nist": ['AU-12 c', 'Rev_4']
   tag "check": "Log on to the OS of the Wildlfy server with OS permissions that
   allow access to Wildlfy.
 
@@ -50,7 +50,7 @@ control "V-62341" do
 
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
-  tag "fix_id": "F-68261r1_fix"
+  tag "fix_id": 'F-68261r1_fix'
 
   connect = attribute('connection')
 

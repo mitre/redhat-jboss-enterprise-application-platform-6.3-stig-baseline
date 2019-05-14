@@ -1,4 +1,4 @@
-control "V-62291" do
+control 'V-62291' do
   title "LDAP enabled security realm value allow-empty-passwords must be set to
   false."
   desc  "
@@ -12,13 +12,13 @@ control "V-62291" do
   encrypted.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000172-AS-000120"
-  tag "gid": "V-62291"
-  tag "rid": "SV-76781r1_rule"
-  tag "stig_id": "JBOS-AS-000305"
-  tag "cci": ["CCI-000197"]
+  tag "gtitle": 'SRG-APP-000172-AS-000120'
+  tag "gid": 'V-62291'
+  tag "rid": 'SV-76781r1_rule'
+  tag "stig_id": 'JBOS-AS-000305'
+  tag "cci": ['CCI-000197']
   tag "documentable": false
-  tag "nist": ["IA-5 (1) (c)", "Rev_4"]
+  tag "nist": ['IA-5 (1) (c)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -38,7 +38,7 @@ control "V-62291" do
   described in section 11.9 -Add an LDAP Security Realm in the
   JBoss_Enterprise_Application_Platform-6.3-Administration_and_Configuration_Guide-en-US
   document."
-  tag "fix_id": "F-68211r1_fix"
+  tag "fix_id": 'F-68211r1_fix'
 
   connect = attribute('connection')
   ldap = attribute('ldap')

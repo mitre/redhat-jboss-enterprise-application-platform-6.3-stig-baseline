@@ -1,4 +1,4 @@
-control "V-62345" do
+control 'V-62345' do
   title "Wildfly servers must be configured to roll over and transfer logs on a
   minimum weekly basis."
   desc  "
@@ -13,13 +13,13 @@ control "V-62345" do
   storage capacity.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000515-AS-000203"
-  tag "gid": "V-62345"
-  tag "rid": "SV-76835r1_rule"
-  tag "stig_id": "JBOS-AS-000735"
-  tag "cci": ["CCI-001851"]
+  tag "gtitle": 'SRG-APP-000515-AS-000203'
+  tag "gid": 'V-62345'
+  tag "rid": 'SV-76835r1_rule'
+  tag "stig_id": 'JBOS-AS-000735'
+  tag "cci": ['CCI-001851']
   tag "documentable": false
-  tag "nist": ["AU-4 (1)", "Rev_4"]
+  tag "nist": ['AU-4 (1)', 'Rev_4']
   tag "check": "If the Wildfly server is configured to use a Syslog Handler, this
   is not a finding.
 
@@ -64,7 +64,7 @@ control "V-62345" do
   instructions on how to create a file handler that will rotate logs on a daily
   basis.
   Create scripts that package and off-load log data at least weekly."
-  tag "fix_id": "F-68265r1_fix"
+  tag "fix_id": 'F-68265r1_fix'
 
   connect = attribute('connection')
 

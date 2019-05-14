@@ -1,4 +1,4 @@
-control "V-62321" do
+control 'V-62321' do
   title "Wildfly must be configured to use an approved TLS version."
   desc  "
       Preventing the disclosure of transmitted information requires that the
@@ -21,13 +21,13 @@ control "V-62321" do
   NIST SP 800-52 specifies the preferred configurations for government systems.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000439-AS-000155"
-  tag "gid": "V-62321"
-  tag "rid": "SV-76811r2_rule"
-  tag "stig_id": "JBOS-AS-000650"
-  tag "cci": ["CCI-002418"]
+  tag "gtitle": 'SRG-APP-000439-AS-000155'
+  tag "gid": 'V-62321'
+  tag "rid": 'SV-76811r2_rule'
+  tag "stig_id": 'JBOS-AS-000650'
+  tag "cci": ['CCI-002418']
   tag "documentable": false
-  tag "nist": ["SC-8", "Rev_4"]
+  tag "nist": ['SC-8', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
   Using the relevant OS commands and syntax, cd to the $JBOSS_HOME;/bin/ folder.
@@ -52,7 +52,7 @@ control "V-62321" do
   1. Add an HTTPS connector.
   2. Configure the SSL encryption certificate and keys.
   3. Set the protocol to TLS V1.1 or V1.2."
-  tag "fix_id": "F-68241r1_fix"
+  tag "fix_id": 'F-68241r1_fix'
 
   connect = attribute('connection')
 

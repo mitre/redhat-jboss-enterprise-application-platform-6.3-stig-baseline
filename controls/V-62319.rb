@@ -1,4 +1,4 @@
-control "V-62319" do
+control 'V-62319' do
   title "The Wildfly server, when hosting mission critical applications, must be
   in a high-availability (HA) cluster."
   desc  "A MAC I system is a system that handles data vital to the
@@ -8,13 +8,13 @@ control "V-62319" do
   hosted application and data are given a platform that is load-balanced and
   provides high availability."
   impact 0.5
-  tag "gtitle": "SRG-APP-000435-AS-000069"
-  tag "gid": "V-62319"
-  tag "rid": "SV-76809r1_rule"
-  tag "stig_id": "JBOS-AS-000640"
-  tag "cci": ["CCI-002385"]
+  tag "gtitle": 'SRG-APP-000435-AS-000069'
+  tag "gid": 'V-62319'
+  tag "rid": 'SV-76809r1_rule'
+  tag "stig_id": 'JBOS-AS-000640'
+  tag "cci": ['CCI-002385']
   tag "documentable": false
-  tag "nist": ["SC-5", "Rev_4"]
+  tag "nist": ['SC-5', 'Rev_4']
   tag "check": "Interview the system admin and determine if the applications
   hosted on the application server are mission critical and require load
   balancing (LB) or high availability (HA).
@@ -47,13 +47,13 @@ control "V-62319" do
   has not been configured to offer HA or LB, this is a finding."
   tag "fix": "Configure the application server to provide LB or HA services for
   the hosted application."
-  tag "fix_id": "F-68239r1_fix"
+  tag "fix_id": 'F-68239r1_fix'
 
   high_availability = attribute('high_availability')
 
   describe 'The wildfly configuration file used' do
       subject { command ('ps -ef | grep wildfly | grep -v grep | grep -v chef').stdout }
-      it {should match /[\w\b\D\d\W]* -c=standalone-full.ha.xml [\w\b\D\d\W]*/}
+      it { should match /[\w\b\D\d\W]* -c=standalone-full.ha.xml [\w\b\D\d\W]*/ }
 
       before do
       skip if high_availability == false

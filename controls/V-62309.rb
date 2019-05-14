@@ -1,4 +1,4 @@
-control "V-62309" do
+control 'V-62309' do
   title "The Wildfly server must be configured to utilize syslog logging."
   desc  "
     Information system logging capability is critical for accurate forensic
@@ -18,13 +18,13 @@ control "V-62309" do
   logged.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000358-AS-000064"
-  tag "gid": "V-62309"
-  tag "rid": "SV-76799r1_rule"
-  tag "stig_id": "JBOS-AS-000505"
-  tag "cci": ["CCI-001851"]
+  tag "gtitle": 'SRG-APP-000358-AS-000064'
+  tag "gid": 'V-62309'
+  tag "rid": 'SV-76799r1_rule'
+  tag "stig_id": 'JBOS-AS-000505'
+  tag "cci": ['CCI-001851']
   tag "documentable": false
-  tag "nist": ["AU-4 (1)", "Rev_4"]
+  tag "nist": ['AU-4 (1)', 'Rev_4']
   tag "check": "Log on to the OS of the Wildfly server with OS permissions that
   allow access to Wildfly.
 
@@ -58,7 +58,7 @@ control "V-62309" do
   \"ls /profile=default/subsystem=logging/syslog-handler=\"
 
   If no values are returned, this is a finding."
-  tag "fix_id": "F-68229r1_fix"
+  tag "fix_id": 'F-68229r1_fix'
 
   connect = attribute('connection')
 

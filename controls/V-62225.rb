@@ -1,4 +1,4 @@
-control "V-62225" do
+control 'V-62225' do
   title "The Java Security Manager must be enabled for the wildfly application
 server."
   desc  "
@@ -14,13 +14,13 @@ given action will be
 the Java Security Manager.
   "
   impact 0.7
-  tag "gtitle": "SRG-APP-000033-AS-000024"
-  tag "gid": "V-62225"
-  tag "rid": "SV-76715r1_rule"
-  tag "stig_id": "JBOS-AS-000030"
-  tag "cci": ["CCI-000213"]
+  tag "gtitle": 'SRG-APP-000033-AS-000024'
+  tag "gid": 'V-62225'
+  tag "rid": 'SV-76715r1_rule'
+  tag "stig_id": 'JBOS-AS-000030'
+  tag "cci": ['CCI-000213']
   tag "documentable": false
-  tag "nist": ["AC-3", "Rev_4"]
+  tag "nist": ['AC-3', 'Rev_4']
   tag "check": "To determine if the Java Security Manager is enabled for Wildfly,
 you must examine the startup commands.  Wildfly can be configured to run in
 either \"domain\" or a \"standalone\" mode.  JBOSS_HOME is the variable home
@@ -79,10 +79,10 @@ domain.conf.bat files.
 For a standalone installation:
 Enable the respective JAVA_OPTS flag in both the standalone.conf and the
 standalone.conf.bat files."
-  tag "fix_id": "F-68145r1_fix"
+  tag "fix_id": 'F-68145r1_fix'
 
   connect = attribute('connection')
-  
+
   describe file('/opt/wildfly/bin/standalone.conf') do
     its('content') { should_not match(%r{#JAVA_OPTS}) }
   end

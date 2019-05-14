@@ -1,4 +1,4 @@
-control "V-62243" do
+control 'V-62243' do
   title "Wildfly must be configured to produce log records that establish which
 hosted application triggered the events."
   desc  "
@@ -16,13 +16,13 @@ where an event occurred, the log data must contain data containing the
 application identity.
   "
   impact 0.5
-  tag "gtitle": "SRG-APP-000097-AS-000060"
-  tag "gid": "V-62243"
-  tag "rid": "SV-76733r1_rule"
-  tag "stig_id": "JBOS-AS-000120"
-  tag "cci": ["CCI-000132"]
+  tag "gtitle": 'SRG-APP-000097-AS-000060'
+  tag "gid": 'V-62243'
+  tag "rid": 'SV-76733r1_rule'
+  tag "stig_id": 'JBOS-AS-000120'
+  tag "cci": ['CCI-000132']
   tag "documentable": false
-  tag "nist": ["AU-3", "Rev_4"]
+  tag "nist": ['AU-3', 'Rev_4']
   tag "check": "Application logs are a configurable variable.  Interview the
 system admin, and have them identify the applications that are running on the
 application server.  Have the system admin identify the log files/location
@@ -41,7 +41,7 @@ server generated the event, or if no events are recorded related to application
 activity, this is a finding."
   tag "fix": "Configure log formatter to audit application activity so
 individual application activity can be identified."
-  tag "fix_id": "F-68163r1_fix"
+  tag "fix_id": 'F-68163r1_fix'
   file = command('find / -name "log4j.properties" 2>/dev/null | grep -v example').stdout
 
   describe 'The number of log4j.properties files found' do
@@ -54,4 +54,3 @@ individual application activity can be identified."
     it { should_not match /0/ }
   end
 end
-
