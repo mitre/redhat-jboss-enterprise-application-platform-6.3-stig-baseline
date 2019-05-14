@@ -1,9 +1,3 @@
-HIGH_AVAILABILITY= attribute(
-  'high_availability',
-  description: 'Set to true if widlfy is being used as a high-availability cluster',
-  default: 'false'
-)
-
 control "V-62319" do
   title "The Wildfly server, when hosting mission critical applications, must be
   in a high-availability (HA) cluster."
@@ -54,13 +48,16 @@ control "V-62319" do
   tag "fix": "Configure the application server to provide LB or HA services for
   the hosted application."
   tag "fix_id": "F-68239r1_fix"
+
+  high_availability = attribute('high_availability')
+
   describe 'The wildfly configuration file used' do
       subject { command ('ps -ef | grep wildfly | grep -v grep | grep -v chef').stdout }
       it {should match /[\w\b\D\d\W]* -c=standalone-full.ha.xml [\w\b\D\d\W]*/}
 
       before do
-      skip if HIGH_AVAILABILITY == 'false'
+      skip if high_availability == false
   end
 
-    end 
+    end
 end

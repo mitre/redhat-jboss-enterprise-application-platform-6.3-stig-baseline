@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62331" do
   title "Wildfly must be configured to generate log records when
   successful/unsuccessful attempts to delete privileges occur."
@@ -46,9 +40,11 @@ control "V-62331" do
   For a Standalone configuration:
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
   tag "fix_id": "F-68251r1_fix"
-  describe 'The wildfly setting: generate log records when successful/unsuccessful attempts to delete privileges occur' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
-    it { should_not match(%r{enabled=false}) }
-  end  
-end
 
+  connect = attribute('connection')
+
+  describe 'The wildfly setting: generate log records when successful/unsuccessful attempts to delete privileges occur' do
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    it { should_not match(%r{enabled=false}) }
+  end
+end

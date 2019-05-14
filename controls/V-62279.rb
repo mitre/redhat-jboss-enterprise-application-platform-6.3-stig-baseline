@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62279" do
   title "The Wildfly Server must be configured to use certificates to
   authenticate admins."
@@ -83,16 +77,18 @@ control "V-62279" do
   via multifactor/certificate-based authentication mechanisms when using network
   access to the management interface."
   tag "fix_id": "F-68199r1_fix"
-  
-  mgmt_interfaces = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/management-interface=").stdout.split("\n")
- 
+
+  connect = attribute('connection')
+
+  mgmt_interfaces = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=").stdout.split("\n")
+
   mgmt_interfaces.each do |interface|
 
-    security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n") 
+    security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
      security_realms.each do |realm|
 
-      get_authentication = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout
-      http_enabled = describe command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/management-interface=http-interface") .stdout
+      get_authentication = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout
+      http_enabled = describe command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface") .stdout
 
       describe.one do
         describe "The wildfly server authentication for security realm #{realm}" do
@@ -102,9 +98,9 @@ control "V-62279" do
         describe "The wildfly server authentication for security realm #{realm}" do
           subject { http_enabled }
           it { should  match(%r{console-enabled=false}) }
-        end 
+        end
       end
-    end   
+    end
   end
   if mgmt_interfaces.empty?
     impact 0.0

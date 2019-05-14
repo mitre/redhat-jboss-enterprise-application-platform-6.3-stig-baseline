@@ -1,15 +1,3 @@
-LDAP= attribute(
-  'ldap',
-  description: 'Set to true if ldap is being used',
-  default: 'false'
-)
-
-
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
 control "V-62293" do
   title "Wildfly must utilize encryption when using LDAP for authentication."
   desc  "
@@ -60,14 +48,17 @@ control "V-62293" do
   2. Create an LDAP-enabled security realm.
   3. Reference the new security domain in the Management Interface."
   tag "fix_id": "F-68213r1_fix"
-  if LDAP
+
+  connect = attribute('connection')
+  ldap = attribute('ldap')
+
+  if ldap
     describe 'A manual review is required to ensure wildfly uses encryption when using LDAP for authentication' do
       skip 'A manual review is required to ensure wildfly uses encryption when using LDAP for authentication'
     end
   else
-    describe command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https") do
+    describe command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https") do
       its('stdout') { should match(%r{enabled=true}) }
     end
   end
 end
-

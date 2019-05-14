@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62247" do
   title "The application server must produce log records that contain
 sufficient information to establish the outcome of events."
@@ -57,9 +51,11 @@ For a Managed Domain configuration:
 For a Standalone configuration:
 \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
   tag "fix_id": "F-68167r1_fix"
-  describe 'The application server produce log records that contain sufficient information to establish the outcome of events' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
-    it { should_not match(%r{enabled=false}) }
-  end 
-end
 
+  connect = attribute('connection')
+
+  describe 'The application server produce log records that contain sufficient information to establish the outcome of events' do
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    it { should_not match(%r{enabled=false}) }
+  end
+end

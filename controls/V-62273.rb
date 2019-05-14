@@ -1,17 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
-APPROVED_APPLICATIONS= attribute(
-  'approved_applications',
-  description: 'List of  authorized applications.',
-  default: %w[
-
-           ]
-)
-
 control "V-62273" do
   title "Any unapproved applications must be removed."
   desc  "Extraneous services and applications running on an application server
@@ -47,14 +33,18 @@ control "V-62273" do
   tag "fix": "Identify, authorize, and document all applications that are
   deployed to the application server.  Remove unauthorized applications."
   tag "fix_id": "F-68193r1_fix"
-  applications_deployed = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /deployment").stdout.split("\n")
+
+  connect = attribute('connection')
+  approved_applications = attribute('approved_applications')
+
+  applications_deployed = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /deployment").stdout.split("\n")
 
   applications_deployed.each do |app|
     a = app.strip
     describe "The installed wildfly application: #{a}" do
       subject "#{a}"
-      it { should be_in APPROVED_APPLICATIONS}
-    end  
+      it { should be_in approved_applications}
+    end
   end
   if applications_deployed.empty?
     impact 0.0
@@ -63,4 +53,3 @@ control "V-62273" do
     end
   end
 end
-

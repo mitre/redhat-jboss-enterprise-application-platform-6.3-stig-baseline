@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62277" do
   title "The Wildfly Server must be configured to utilize a centralized
   authentication mechanism such as AD or LDAP."
@@ -52,11 +46,13 @@ control "V-62277" do
   3. Reference the new security domain in the Management Interface."
   tag "fix_id": "F-68197r1_fix"
 
-  get_security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
+  connect = attribute('connection')
+
+  get_security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
 
   get_security_realms.each do |security_realm|
     describe "The security realm #{security_realm} authentication mechanism" do
-      subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/security-realm=#{security_realm}/authentication").stdout }
+      subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{security_realm}/authentication").stdout }
       it { should include 'ldap'}
     end
   end

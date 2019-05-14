@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62345" do
   title "Wildfly servers must be configured to roll over and transfer logs on a
   minimum weekly basis."
@@ -71,8 +65,11 @@ control "V-62345" do
   basis.
   Create scripts that package and off-load log data at least weekly."
   tag "fix_id": "F-68265r1_fix"
+
+  connect = attribute('connection')
+
   describe 'The wildfly periodic roating file handler setting' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ subsystem=logging/periodic-rotating-file-handler=").stdout }
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ subsystem=logging/periodic-rotating-file-handler=").stdout }
     it { should match(%r{FILE}) }
-  end  
+  end
 end

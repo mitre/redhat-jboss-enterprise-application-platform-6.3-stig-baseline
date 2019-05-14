@@ -1,10 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
-
 control "V-62225" do
   title "The Java Security Manager must be enabled for the wildfly application
 server."
@@ -87,6 +80,9 @@ For a standalone installation:
 Enable the respective JAVA_OPTS flag in both the standalone.conf and the
 standalone.conf.bat files."
   tag "fix_id": "F-68145r1_fix"
+
+  connect = attribute('connection')
+  
   describe file('/opt/wildfly/bin/standalone.conf') do
     its('content') { should_not match(%r{#JAVA_OPTS}) }
   end
@@ -98,7 +94,7 @@ standalone.conf.bat files."
       its('content') { should_not match(%r{JAVA_OPTS="\s*"\s*}) }
     end
   end
- 
+
   describe.one do
     describe file('/opt/wildfly/bin/standalone.bat') do
       its('content') { should_not match(%r{#set\s*"JAVA_OPTS=\s*}) }

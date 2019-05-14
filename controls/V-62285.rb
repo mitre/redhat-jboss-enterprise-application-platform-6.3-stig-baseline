@@ -1,16 +1,3 @@
-LDAP= attribute(
-  'ldap',
-  description: 'Set to true if ldap is being used',
-  default: 'false'
-)
-
-
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62285" do
   title "Wildfly management Interfaces must be integrated with a centralized
   authentication mechanism that is configured to manage accounts according to DoD
@@ -69,17 +56,21 @@ control "V-62285" do
   2. Create an LDAP-enabled security realm.
   3. Reference the new security domain in the Management Interface."
   tag "fix_id": "F-68205r1_fix"
-  management_interfaces = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/management-interface=").stdout.split("\n")
+
+  ldap = attribute('ldap')
+  connect = attribute('connection')
+
+  management_interfaces = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=").stdout.split("\n")
 
   management_interfaces.each do |interface|
 
-    security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
+    security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
      security_realms.each do |realm|
       describe "The security realm #{realm} authentication mechanism" do
-        subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT}  --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout }
+        subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect}  --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout }
         it { should match /ldap/}
       end
-    end   
+    end
   end
   if management_interfaces.empty?
     impact 0.0

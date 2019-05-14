@@ -1,9 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
 control "V-62237" do
   title "Wildfly must be configured to log the IP address of the remote system
   connecting to the Wildfly system/cluster."
@@ -59,9 +53,11 @@ For a Managed Domain configuration:
 For a Standalone configuration:
 \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
   tag "fix_id": "F-68157r1_fix"
-  describe 'Wildfly log the IP address of the remote system connecting to the Wildfly system/cluster' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
-    it { should_not match(%r{enabled=false}) }
-  end 
-end
 
+  connect = attribute('connection')
+
+  describe 'Wildfly log the IP address of the remote system connecting to the Wildfly system/cluster' do
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    it { should_not match(%r{enabled=false}) }
+  end
+end

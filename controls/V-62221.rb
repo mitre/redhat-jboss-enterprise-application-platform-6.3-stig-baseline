@@ -1,10 +1,3 @@
-CONNECT= attribute(
-  'connection',
-  description: 'Command used to connect to the wildfly instance',
-  default: '--connect'
-)
-
-
 control "V-62221" do
   title "Silent Authentication must be removed from the Default Application
 Security Realm."
@@ -56,9 +49,11 @@ For managed domain installations, run the following command:
 /host=HOST_NAME/core-service=management/securityrealm=
 ApplicationRealm/authentication=local:remove"
   tag "fix_id": "F-68141r1_fix"
-  describe 'The wildfly default application security realm silent authentication' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/security-realm=ApplicationRealm/authentication").stdout }
-    it { should_not match(%r{local}) }
-  end 
-end
 
+  connect = attribute('connection')
+
+  describe 'The wildfly default application security realm silent authentication' do
+    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=ApplicationRealm/authentication").stdout }
+    it { should_not match(%r{local}) }
+  end
+end

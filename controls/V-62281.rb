@@ -1,62 +1,6 @@
 # these are default attributes to check for wilfly users based on their role
 # they should be changed, using the format user-<username>
 # a user named test wouuld look like user-test
-
-AUDITOR_ROLE_USERS= attribute(
-  'auditor_role_users',
-  description: 'List of authorized users with the auditor role.',
-  default: [
-            "user-auditor"
-           ]
-)
-
-ADMINISTRATOR_ROLE_USERS= attribute(
-  'administrator_role_users',
-  description: 'List of authorized users with the administrator role.',
-  default: [
-            "user-admin"
-           ]
-)
-
-SUPERUSER_ROLE_USERS= attribute(
-  'superuser_role_users',
-  description: 'List of authorized users with the SuperUser role.',
-  default: [
-            "user-$local",
-            "user-superuser"
-           ]
-)
-DEPLOYER_ROLE_USERS= attribute(
-  'deployer_role_users',
-  description: 'List of authorized users with the deployer role.',
-  default: [
-            "user-deployer"
-           ]
-)
-
-MAINTAINER_ROLE_USERS= attribute(
-  'maintainer_role_users',
-  description: 'List of authorized users with the maintainer role.',
-  default: [
-            "user-maintainer"
-           ]
-)
-
-MONITOR_ROLE_USERS= attribute(
-  'monitor_role_users',
-  description: 'List of authorized users with the monitor role.',
-  default: [
-            "user-monitor"
-           ]
-)
-
-OPERATOR_ROLE_USERS= attribute(
-  'operator_role_users',
-  description: 'List of authorized users with the operator role.',
-  default: [
-            "user-operator"
-           ]
-)
 control "V-62281" do
   title "The Wildfly server must be configured to use individual accounts and not
   generic or shared accounts."
@@ -99,7 +43,7 @@ control "V-62281" do
   $JBOSS_HOME;/standalone/configuration/standalone-full.xml
   $JBOSS_HOME;/standalone/configuration/standalone.-full-ha.xml
   $JBOSS_HOME;/standalone/configuration/standalone.ha.xml
- 
+
   For a Managed Domain:
   $JBOSS_HOME;/domain/configuration/domain.xml.
 
@@ -117,33 +61,42 @@ control "V-62281" do
   individually authenticated by creating individual user accounts.  Utilize an
   LDAP server that is configured according to DOD policy."
   tag "fix_id": "F-68201r1_fix"
-  
+
+  connect = attribute('connection')
+  auditor_role_users = attribute('auditor_role_users')
+  administrator_role_users = attribute('administrator_role_users')
+  superuser_role_users = attribute('superuser_role_users')
+  deployer_role_users = attribute('deployer_role_users')
+  maintainer_role_users = attribute('maintainer_role_users')
+  monitor_role_users = attribute('monitor_role_users')
+  operator_role_users = attribute('operator_role_users')
+
   # obtains all users with the auditor role
-  auditor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Auditor/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+  auditor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Auditor/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
 
   # obtains all users with the administrator role
-  administrator_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Administrator/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+  administrator_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Administrator/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
 
   # obtains all users with the SuperUser role
-  superuser_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=authorization/role-mapping=SuperUser/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
-  
+  superuser_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=SuperUser/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+
   # obtains all users with the deployer role
-  deployer_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Deployer/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+  deployer_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Deployer/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
   # obtains all users with the maintainer role
-  maintainer_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Maintainer/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+  maintainer_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Maintainer/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
 
   # obtains all users with the monitor role
-  monitor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Monitor/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+  monitor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Monitor/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
 
   # obtains all users with the operator role
-  operator_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Operator/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+  operator_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Operator/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
 
   if !auditor_role.empty?
     auditor_role.each do |user|
       describe "User: #{user} with the auditor role" do
         subject { user }
-        it { should be_in AUDITOR_ROLE_USERS }
-      end  
+        it { should be_in auditor_role_users }
+      end
     end
   end
 
@@ -151,17 +104,17 @@ control "V-62281" do
     administrator_role.each do |user|
       describe "User: #{user} with the administrator role" do
         subject { user }
-        it { should be_in ADMINISTRATOR_ROLE_USERS }
-      end  
-    end 
-  end  
+        it { should be_in administrator_role_users }
+      end
+    end
+  end
 
   if !superuser_role.empty?
     superuser_role.each do |user|
       describe "User: #{user} with the SuperUser role" do
         subject { user }
-        it { should be_in SUPERUSER_ROLE_USERS}
-      end   
+        it { should be_in superuser_role_users}
+      end
     end
   end
 
@@ -169,37 +122,37 @@ control "V-62281" do
     deployer_role.each do |user|
       describe "User: #{user} with the deployer role" do
         subject { user }
-       it { should be_in DEPLOYER_ROLE_USERS}
-      end  
-    end 
+       it { should be_in deployer_role_users}
+      end
+    end
   end
 
   if !maintainer_role.empty?
     maintainer_role.each do |user|
       describe "User: #{user} with the maintainer role" do
         subject { user }
-        it { should be_in MAINTAINER_ROLE_USERS}
-      end  
-    end  
-  end 
+        it { should be_in maintainer_role_users}
+      end
+    end
+  end
 
   if !monitor_role.empty?
     monitor_role.each do |user|
       describe "User: #{user} with the monitor role" do
         subject { user }
-        it { should be_in MONITOR_ROLE_USERS}
-      end  
+        it { should be_in monitor_role_users}
+      end
     end
-  end    
-  
+  end
+
   if !operator_role.empty?
     operator_role.each do |user|
       describe "User: #{user} with the operator role" do
         subject { user }
-        it { should be_in OPERATOR_ROLE_USERS}
-      end  
+        it { should be_in operator_role_users}
+      end
     end
-  end 
+  end
   if auditor_role.empty? && administrator_role.empty? && superuser_role.empty? && deployer_role.empty? && maintainer_role.empty && monitor_role.empty && operator_role.empty?
     impact 0.0
     desc 'The are no Wildfly accounts with the following roles: auditor, administrator, superuser, deployer, maintainer, monitor, or operator, therefore this control is not applicable'
