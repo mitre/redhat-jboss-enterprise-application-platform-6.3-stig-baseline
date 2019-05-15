@@ -1,4 +1,4 @@
-name: wildfly-stig-baseline
+name: red-hat-jboss-eap-6.3-stig-baseline
 title: wildfly inspec profile
 maintainer: MITRE InSpec Team
 copyright: MITRE InSpec Team
