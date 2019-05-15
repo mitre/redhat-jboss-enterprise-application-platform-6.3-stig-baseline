@@ -17,8 +17,8 @@ connection: '--connect'
 
 #If running the profile, after running the wildfy-hardening cookbook set this
 #connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
-high_availability: 'false'
-ldap: 'false'
+high_availability: false
+ldap: false
 connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect'
 #node.default['wildfly-hardening']['c'] = '--connect'
 # command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)
