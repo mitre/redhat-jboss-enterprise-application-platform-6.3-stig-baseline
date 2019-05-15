@@ -28,7 +28,7 @@ $ /bin/sh /opt/wildfly/bin/jboss-cli.sh --connect
 # Enter P to permanetely accept the certificate
 
 # How to run 
-$ inspec exec wildfly-inspec --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
 
 #If running the profile before running the wildfly-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
 connection: '--connect'
