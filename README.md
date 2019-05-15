@@ -28,12 +28,12 @@ $ /bin/sh /opt/wildfly/bin/jboss-cli.sh --connect
 # Enter P to permanetely accept the certificate
 
 # How to run 
-$ inspec exec wildfly-inspec --attrs wildfly-stig-baseline/attributes.yml
+$ inspec exec wildfly-inspec --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
 
-#If running the profile before running the wildfly-hardening cookbook set the following in wildfly-stig-baseline/attributes.yml:
+#If running the profile before running the wildfly-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
 connection: '--connect'
 
-# If running the profile after running the wildfy-hardening cookbook set the following in wildfly-stig-baseline/attributes.yml:
+# If running the profile after running the wildfy-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
 connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
 
 ```
@@ -49,10 +49,10 @@ repository.
 #-u=<username to login in a>
 #-p=<password>
 
-#If running the profile before running the wildfly-hardening cookbook set the following in wildfly-inspec/attributes.yml:
+#If running the profile before running the wildfly-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
 connection: '--connect'
 
-#If running the profile after running the wildfy-hardening cookbook set this in wildfly-inspec/attributes.yml:
+#If running the profile after running the wildfy-hardening cookbook set this in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
 connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
 high_availability: 'false'
 ldap: 'false'
