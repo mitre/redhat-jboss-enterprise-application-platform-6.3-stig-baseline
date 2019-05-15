@@ -32,7 +32,7 @@ control 'V-62273' do
   for deployed applications, this is a finding."
   tag "fix": "Identify, authorize, and document all applications that are
   deployed to the application server.  Remove unauthorized applications."
-  tag "fix_id": 'F-68193r1_fix'
+  tag "fix_id": 'F-68193r1_fix' 
 
   connect = attribute('connection')
   approved_applications = attribute('approved_applications')
@@ -42,7 +42,7 @@ control 'V-62273' do
   applications_deployed.each do |app|
     a = app.strip
     describe "The installed wildfly application: #{a}" do
-      subject "#{a}"
+      subject {"#{a}"}
       it { should be_in approved_applications }
     end
   end
