@@ -15,13 +15,13 @@ You may choose to run the profile via a remote url, this has the advantage of al
 The disadvantage is you may wish to modify controls, which is only possible when downloaded.
 Also, the remote profile is unintuitive for passing in attributes, which modify the default values of the profile.
 ``` bash
-inspec exec https://gitlab.mitre.org/inspec/wildfly-stig-baseline/master/archive.tar.gz
+inspec exec https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
 ```
 
 Another option is to download the profile then run it, this allows you to edit specific instructions and view the profile code.
 ``` bash
 # Clone Inspec Profile
-$ git clone https://github.com/mitre/wildfly-stig-baseline/archive/master.tar.gz
+$ git clone https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
 
 # Need to run the command 
 $ /bin/sh /opt/wildfly/bin/jboss-cli.sh --connect 
