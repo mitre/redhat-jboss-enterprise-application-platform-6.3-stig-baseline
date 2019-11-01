@@ -1,4 +1,4 @@
-# wildfly-stig-baseline
+# red-hat-jboss-eap-6.3-stig-baseline
 
 InSpec profile to validate the secure configuration of JBOSS Wildfly EAP server, against [DISA](https://iase.disa.mil/stigs/)'s **JBOSS Security Technical Implementation Guide (STIG)**.
 
