@@ -44,21 +44,19 @@ individual application activity can be identified."
   tag "fix_id": 'F-68163r1_fix'
   file = command('find / -name "log4j.properties" 2>/dev/null | grep -v example').stdout
 
-  if (attribute('disable_slow_controls')) {
+  if (attribute('disable_slow_controls'))
     describe "This control is a long running control and is disabled, for full accredidation you need to enable this control." do
       skip "This control is a long running control and is disabled, for full accredidation you need to enable this control."
     end
-  }
-else
-  {
+  else
     describe 'The number of log4j.properties files found' do
-    subject { command('find / -name "log4j.properties" 2>/dev/null | grep -v example | wc -l').stdout }
-    it { should_not match /0/ }
-  end
+      subject { command('find / -name "log4j.properties" 2>/dev/null | grep -v example | wc -l').stdout }
+      it { should_not match /0/ }
+    end
 
-  describe 'The number of words in the log4j.properties file' do
-    subject { command("wc -c #{file}").stdout }
-    it { should_not match /0/ }
+    describe 'The number of words in the log4j.properties file' do
+      subject { command("wc -c #{file}").stdout }
+      it { should_not match /0/ }
+    end
   end
-}
 end
