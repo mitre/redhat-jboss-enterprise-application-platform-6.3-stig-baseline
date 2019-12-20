@@ -64,7 +64,7 @@ $ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME@TARGE
 
 How to run on docker container
 ```bash
-Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID
+Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID --attrs red-hat-jboss-eap-6.3-stig-baseline/
 ```
 
 
