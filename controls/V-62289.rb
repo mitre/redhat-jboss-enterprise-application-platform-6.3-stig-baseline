@@ -40,10 +40,10 @@ control 'V-62289' do
   document."
   tag "fix_id": 'F-68209r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The wildfly keystore and trustore vault options' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout }
     it { should match(%r{vault-options={"KEYSTORE_URL" => "[a-zA-Zа-яА-Я0-9_!\/.]*","KEYSTORE_PASSWORD" => "MASK-[\w.]*","KEYSTORE_ALIAS" => "\w*","SALT" => "[\w\d]*","ITERATION_COUNT" => "\d*","ENC_FILE_DIR" => "[a-zA-Zа-яА-Я0-9_!\/.]*"}}) }
   end
 end

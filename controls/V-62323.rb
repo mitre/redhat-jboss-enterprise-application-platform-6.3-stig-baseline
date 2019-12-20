@@ -64,9 +64,9 @@ control 'V-62323' do
   3. Set the Cipher to an approved algorithm."
   tag "fix_id": 'F-68243r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
-  cipher_suites = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout
+  cipher_suites = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout
   describe.one do
     describe 'The wildfly cryptographic algorithm used for TLS' do
       subject { cipher_suites }

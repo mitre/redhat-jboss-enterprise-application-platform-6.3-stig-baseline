@@ -54,10 +54,10 @@ control 'V-62321' do
   3. Set the protocol to TLS V1.1 or V1.2."
   tag "fix_id": 'F-68241r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The wildfly enabled TLS versions' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout }
     it { should match(%r{enabled-protocols=TLSv1.[12]:TLSv1.[12]}) }
   end
 end

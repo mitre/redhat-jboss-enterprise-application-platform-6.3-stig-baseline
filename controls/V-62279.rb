@@ -78,17 +78,17 @@ control 'V-62279' do
   access to the management interface."
   tag "fix_id": 'F-68199r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
-  mgmt_interfaces = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=").stdout.split("\n")
+  mgmt_interfaces = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=").stdout.split("\n")
 
   mgmt_interfaces.each do |interface|
 
-    security_realms = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
+    security_realms = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
     security_realms.each do |realm|
 
-      get_authentication = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout
-      http_enabled = describe command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface") .stdout
+      get_authentication = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout
+      http_enabled = describe command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface") .stdout
 
       describe.one do
         describe "The wildfly server authentication for security realm #{realm}" do

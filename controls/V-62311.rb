@@ -50,10 +50,10 @@ control 'V-62311' do
   /subsystem=deployment-scanner/scanner=default:write-attribute(name=scan-enabled,value=false)"
   tag "fix_id": 'F-68231r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The wildfly application deployment scanner' do
-  subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=deployment-scanner/scanner=default").stdout }
+  subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=deployment-scanner/scanner=default").stdout }
     it { should_not match(%r{scan-enabled=true}) }
   end
 end

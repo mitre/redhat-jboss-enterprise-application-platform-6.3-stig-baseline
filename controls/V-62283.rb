@@ -61,11 +61,11 @@ control 'V-62283' do
   Wildfly server from the local host."
   tag "fix_id": 'F-68203r1_fix'
 
-  bind_mgmt_address = command("grep jboss.bind.address.management #{ attribute('jboss_home') }/standalone/configuration/service.properties | awk -F'=' '{print $2}' ").stdout
-  public_bind_address = command("grep jboss.bind.address #{ attribute('jboss_home') }/standalone/configuration/service.properties | grep -v management | awk -F'=' '{print $2}' ").stdout
+  bind_mgmt_address = command("grep jboss.bind.address.management #{ input('jboss_home') }/standalone/configuration/service.properties | awk -F'=' '{print $2}' ").stdout
+  public_bind_address = command("grep jboss.bind.address #{ input('jboss_home') }/standalone/configuration/service.properties | grep -v management | awk -F'=' '{print $2}' ").stdout
 
-  bind_mgmt_address = command("grep jboss.bind.address.management #{ attribute('jboss_home') }/standalone/configuration/service.properties | awk -F'=' '{print $2}' ").stdout
-  public_bind_address = command("grep jboss.bind.address #{ attribute('jboss_home') }/standalone/configuration/service.properties | grep -v management | awk -F'=' '{print $2}' ").stdout
+  bind_mgmt_address = command("grep jboss.bind.address.management #{ input('jboss_home') }/standalone/configuration/service.properties | awk -F'=' '{print $2}' ").stdout
+  public_bind_address = command("grep jboss.bind.address #{ input('jboss_home') }/standalone/configuration/service.properties | grep -v management | awk -F'=' '{print $2}' ").stdout
 
   describe 'The wildfly bind address' do
     subject { bind_mgmt_address }

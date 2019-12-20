@@ -45,9 +45,9 @@ control 'V-62269' do
   \"/subsystem=jmx/remoting-connector=jmx:remove\""
   tag "fix_id": 'F-68189r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
   describe 'The wildfly remote access' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=jmx/remoting-connector").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=jmx/remoting-connector").stdout }
     it { should_not match(%r{jmx}) }
   end
 end

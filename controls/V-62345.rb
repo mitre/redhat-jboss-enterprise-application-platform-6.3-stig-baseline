@@ -66,10 +66,10 @@ control 'V-62345' do
   Create scripts that package and off-load log data at least weekly."
   tag "fix_id": 'F-68265r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The wildfly periodic roating file handler setting' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ subsystem=logging/periodic-rotating-file-handler=").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ subsystem=logging/periodic-rotating-file-handler=").stdout }
     it { should match(%r{FILE}) }
   end
 end

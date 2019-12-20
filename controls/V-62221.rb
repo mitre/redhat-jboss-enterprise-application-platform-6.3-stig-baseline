@@ -50,10 +50,10 @@ For managed domain installations, run the following command:
 ApplicationRealm/authentication=local:remove"
   tag "fix_id": 'F-68141r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The wildfly default application security realm silent authentication' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=ApplicationRealm/authentication").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=ApplicationRealm/authentication").stdout }
     it { should_not match(%r{local}) }
   end
 end

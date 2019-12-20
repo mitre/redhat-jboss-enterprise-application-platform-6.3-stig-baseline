@@ -52,9 +52,9 @@ finding."
 protect log information from unauthorized read access."
   tag "fix_id": 'F-68171r1_fix'
 
-  wildfly_group = attribute('wildfly_group')
-  wildly_owner = attribute('wildly_owner')
-  describe directory("#{ attribute('jboss_home') }/standalone/log") do
+  wildfly_group = input('wildfly_group')
+  wildly_owner = input('wildly_owner')
+  describe directory("#{ input('jboss_home') }/standalone/log") do
     its('owner') { should eq "#{wildly_owner}" }
     its('group') { should eq "#{wildfly_group}" }
     its('mode') { should cmp '0750' }

@@ -49,10 +49,10 @@ control 'V-62231' do
 
   tag "fix_id": 'F-68151r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The Wildfly server generate log records for access and authentication events to the management interface.' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
   end
 end

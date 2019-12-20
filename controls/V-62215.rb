@@ -58,10 +58,10 @@ here.
 3. Set the SSL protocol to TLS V1.1 or V1.2."
   tag "fix_id": 'F-68135r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'HTTPS for Wildfly web interfaces' do
-  subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https").stdout }
+  subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https").stdout }
     it { should match(%r{enabled=true}) }
   end
 end

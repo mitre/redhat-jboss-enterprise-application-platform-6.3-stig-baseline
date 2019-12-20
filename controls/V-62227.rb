@@ -43,10 +43,10 @@ variables.
 role-mapping=ROLENAME/include=ALIAS:add(name-USERNAME, type=USER ROLE)"
   tag "fix_id": 'F-68147r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The wildfly server authorization access' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/").stdout }
     it { should match(%r{provider=rbac}) }
   end
 end

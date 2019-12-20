@@ -39,11 +39,11 @@ control 'V-62287' do
   3. Configure JBoss to use the password vault."
   tag "fix_id": 'F-68207r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
-  code = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
-  vault_module = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
-  vault_options = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
+  code = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
+  vault_module = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
+  vault_options = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
 
   describe 'The wildfly password vault code' do
     subject { code }

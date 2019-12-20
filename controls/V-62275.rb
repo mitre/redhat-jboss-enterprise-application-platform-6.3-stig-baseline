@@ -50,13 +50,13 @@ Select \"Inbound\"
 Select the port that needs to be reconfigured and select \"Edit\"."
   tag "fix_id": 'F-68195r1_fix'
 
-  wildfly_ports = attribute('wildfly_ports')
+  wildfly_ports = input('wildfly_ports')
 
   wildfly_ports.each do |port|
-    describe file("#{ attribute('jboss_home') }/standalone/configuration/service.properties") do
+    describe file("#{ input('jboss_home') }/standalone/configuration/service.properties") do
       its('content') { should include port }
     end
-    describe file("#{ attribute('jboss_home') }/standalone/configuration/service.properties") do
+    describe file("#{ input('jboss_home') }/standalone/configuration/service.properties") do
       it { should exist}
     end
   end

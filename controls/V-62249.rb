@@ -67,9 +67,9 @@ control 'V-62249' do
   \"/subsystem=logging/root-logger=ROOT:write-attribute(name=level,value=INFO)\""
   tag "fix_id": 'F-68169r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
-  get_logging_level = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/root-logger=ROOT").stdout
+  get_logging_level = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/root-logger=ROOT").stdout
 
   describe.one do
     describe 'The wildfly root logger level' do
