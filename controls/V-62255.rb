@@ -53,9 +53,10 @@ protect log information from unauthorized deletion."
 
   wildfly_group = attribute('wildfly_group')
   wildly_owner = attribute('wildly_owner')
-  describe directory("/opt/wildfly/standalone/log") do
+  describe directory("#{ attribute('jboss_home') }/standalone/log") do
     its('owner') { should eq "#{wildly_owner}" }
     its('group') { should eq "#{wildfly_group}" }
+     # use proper mode matcher be_more_permissive_than
     its('mode') { should cmp '0750' }
   end
 end

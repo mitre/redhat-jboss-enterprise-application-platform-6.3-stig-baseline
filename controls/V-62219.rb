@@ -52,10 +52,10 @@ appropriate roles."
   administrator_role_users = attribute('administrator_role_users')
   superuser_role_users = attribute('superuser_role_users')
 
-  role_mappings = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=").stdout.strip.split(" ")
-  auditor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Auditor/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
-  administrator_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Administrator/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
-  superuser_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=SuperUser/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+  role_mappings = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=").stdout.strip.split(" ")
+  auditor_role = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Auditor/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+  administrator_role = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=Administrator/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
+  superuser_role = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/role-mapping=SuperUser/include= | grep -v 'Manage' | grep -v 'core' | grep -v 'access' | grep -v 'mapping' | grep -v 'not found'").stdout.strip.split(" ")
 
   if !auditor_role.empty?
     auditor_role.each do |user|

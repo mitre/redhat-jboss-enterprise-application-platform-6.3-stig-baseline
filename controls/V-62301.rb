@@ -72,10 +72,10 @@ control 'V-62301' do
   tag "fix": "Configure file permissions on the Wildfly log folder to protect
   from unauthorized access."
   tag "fix_id": 'F-68221r1_fix'
-  describe directory('/opt/wildfly/standalone/log') do
+  describe directory("#{ attribute('jboss_home') }/standalone/log") do
     it { should_not be_readable.by 'others' }
   end
-  describe directory('/opt/wildfly/standalone/log') do
+  describe directory("#{ attribute('jboss_home') }/standalone/log") do
     it { should_not be_writable.by 'others' }
   end
 end

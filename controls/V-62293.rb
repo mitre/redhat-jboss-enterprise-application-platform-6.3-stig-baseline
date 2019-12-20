@@ -57,7 +57,7 @@ control 'V-62293' do
       skip 'A manual review is required to ensure wildfly uses encryption when using LDAP for authentication'
     end
   else
-    describe command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https") do
+    describe command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https") do
       its('stdout') { should match(%r{enabled=true}) }
     end
   end

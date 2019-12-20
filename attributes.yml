@@ -22,3 +22,4 @@ ldap: false
 connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect'
 #node.default['wildfly-hardening']['c'] = '--connect'
 # command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)
+jboss_home: '/opt/wildfly'

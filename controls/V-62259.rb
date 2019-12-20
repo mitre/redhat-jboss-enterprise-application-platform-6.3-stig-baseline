@@ -42,10 +42,10 @@ Owner can be full access.
 Group can be full access.
 All others must have execute permissions only."
   tag "fix_id": 'F-68179r1_fix'
-  describe file('/opt/wildfly/standalone/configuration/mgmt-users.properties') do
+  describe file("#{ attribute('jboss_home') }/standalone/configuration/mgmt-users.properties") do
     it { should_not be_readable.by('others') }
   end
-  describe file('/opt/wildfly/standalone/configuration/mgmt-users.properties') do
+  describe file("#{ attribute('jboss_home') }/standalone/configuration/mgmt-users.properties") do
     it { should_not be_writable.by('others') }
   end
 end

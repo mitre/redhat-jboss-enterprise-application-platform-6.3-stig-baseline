@@ -51,7 +51,7 @@ control 'V-62335' do
   connect = attribute('connection')
 
   describe 'The wildfly server setting: generate log records for privileged activities' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
   end
 end

@@ -57,7 +57,7 @@ For a Standalone configuration:
   connect = attribute('connection')
 
   describe 'The wildfly server setting: produce log records containing information to establish what type of events occurred' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
   end
 end

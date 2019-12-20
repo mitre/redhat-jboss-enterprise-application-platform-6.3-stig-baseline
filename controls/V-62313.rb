@@ -50,7 +50,7 @@ control 'V-62313' do
   connect = attribute('connection')
 
   describe 'The Wildfly server setting: log when failed application deployments occur' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
   end
 end

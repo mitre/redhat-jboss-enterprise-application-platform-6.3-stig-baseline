@@ -44,10 +44,10 @@ control 'V-62299' do
   tag "fix": "Configure file permissions on the Wildfly folder to protect from
   unauthorized access."
   tag "fix_id": 'F-68219r1_fix'
-  describe directory('/opt/wildfly/') do
+  describe directory("#{ attribute('jboss_home') }/") do
     it { should_not be_readable.by('others') }
   end
-  describe directory('/opt/wildfly/') do
+  describe directory("#{ attribute('jboss_home') }/") do
     it { should_not be_writable.by('others') }
   end
 end

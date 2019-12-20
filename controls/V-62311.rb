@@ -53,7 +53,7 @@ control 'V-62311' do
   connect = attribute('connection')
 
   describe 'The wildfly application deployment scanner' do
-  subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=deployment-scanner/scanner=default").stdout }
+  subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=deployment-scanner/scanner=default").stdout }
     it { should_not match(%r{scan-enabled=true}) }
   end
 end

@@ -48,7 +48,7 @@ control 'V-62303' do
   connect = attribute('connection')
 
   describe 'The wildfly HTTP management interface' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface").stdout }
     it { should_not match(%r{console-enabled=true}) }
   end
 end

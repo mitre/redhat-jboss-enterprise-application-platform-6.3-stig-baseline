@@ -16,7 +16,7 @@ attack vectors.  QuickStarts must be removed."
   tag "fix": "Delete the QuickStarts folder."
   tag "fix_id": 'F-68187r1_fix'
   describe 'The wildfly quickstart files found' do
-    subject { command('find /opt/wildfly/ -type d | grep quickstarts').stdout }
+    subject { command("find #{ attribute('jboss_home') }/ -type d | grep quickstarts").stdout }
     it { should match(%r{}) }
   end
 end

@@ -43,7 +43,7 @@ control 'V-62289' do
   connect = attribute('connection')
 
   describe 'The wildfly keystore and trustore vault options' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout }
     it { should match(%r{vault-options={"KEYSTORE_URL" => "[a-zA-Zа-яА-Я0-9_!\/.]*","KEYSTORE_PASSWORD" => "MASK-[\w.]*","KEYSTORE_ALIAS" => "\w*","SALT" => "[\w\d]*","ITERATION_COUNT" => "\d*","ENC_FILE_DIR" => "[a-zA-Zа-яА-Я0-9_!\/.]*"}}) }
   end
 end

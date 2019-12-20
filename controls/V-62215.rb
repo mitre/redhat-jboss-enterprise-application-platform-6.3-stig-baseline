@@ -61,7 +61,7 @@ here.
   connect = attribute('connection')
 
   describe 'HTTPS for Wildfly web interfaces' do
-  subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https").stdout }
+  subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https").stdout }
     it { should match(%r{enabled=true}) }
   end
 end

@@ -50,7 +50,7 @@ control 'V-62305' do
   connect = attribute('connection')
 
   describe "The wildfly application server's access authorization" do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/").stdout }
     it { should match(%r{provider=rbac}) }
   end
 end

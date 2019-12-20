@@ -69,7 +69,7 @@ control 'V-62345' do
   connect = attribute('connection')
 
   describe 'The wildfly periodic roating file handler setting' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ subsystem=logging/periodic-rotating-file-handler=").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ subsystem=logging/periodic-rotating-file-handler=").stdout }
     it { should match(%r{FILE}) }
   end
 end

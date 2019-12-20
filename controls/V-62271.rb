@@ -40,7 +40,7 @@ control 'V-62271' do
 
   connect = attribute('connection')
   describe 'The wildfly web application' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/host=default-host/location=\\\/").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/host=default-host/location=\\\/").stdout }
     it { should_not match(%r{handler=welcome-content}) }
   end
 end

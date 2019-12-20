@@ -41,9 +41,9 @@ control 'V-62287' do
 
   connect = attribute('connection')
 
-  code = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
-  vault_module = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
-  vault_options = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
+  code = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
+  vault_module = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
+  vault_options = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=vault").stdout
 
   describe 'The wildfly password vault code' do
     subject { code }

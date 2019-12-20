@@ -57,7 +57,7 @@ control 'V-62339' do
 
   describe 'The wildfly server setting: generate log records when concurrent
   logons from different workstations occur to the application server management interface' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
   end
 end

@@ -53,7 +53,7 @@ ManagementRealm/authentication=local:remove"
   connect = attribute('connection')
 
   describe 'The wildfly default management security realm silent authentication' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=ManagementRealm/authentication").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=ManagementRealm/authentication").stdout }
     it { should_not match(%r{local}) }
   end
 end
