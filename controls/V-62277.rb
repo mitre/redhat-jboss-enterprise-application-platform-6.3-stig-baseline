@@ -48,11 +48,11 @@ control 'V-62277' do
 
   connect = attribute('connection')
 
-  get_security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
+  get_security_realms = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
 
   get_security_realms.each do |security_realm|
     describe "The security realm #{security_realm} authentication mechanism" do
-      subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{security_realm}/authentication").stdout }
+      subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{security_realm}/authentication").stdout }
       it { should include 'ldap' }
     end
   end

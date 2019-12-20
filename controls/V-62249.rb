@@ -69,7 +69,7 @@ control 'V-62249' do
 
   connect = attribute('connection')
 
-  get_logging_level = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/root-logger=ROOT").stdout
+  get_logging_level = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/root-logger=ROOT").stdout
 
   describe.one do
     describe 'The wildfly root logger level' do

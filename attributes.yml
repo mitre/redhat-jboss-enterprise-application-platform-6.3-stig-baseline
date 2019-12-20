@@ -12,6 +12,8 @@
 #-u=<username to login in a>
 #-p=<password>
 
+disable_slow_controls: false
+
 #If running the profile, before running the wildfly-hardening cookbook set this
 connection: '--connect'
 
@@ -22,3 +24,4 @@ ldap: false
 connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect'
 #node.default['wildfly-hardening']['c'] = '--connect'
 # command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{CONNECT} --commands=ls\\ /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)
+jboss_home: '/opt/wildfly'

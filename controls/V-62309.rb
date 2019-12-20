@@ -63,7 +63,7 @@ control 'V-62309' do
   connect = attribute('connection')
 
   describe 'The wildfly server syslog handler' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout }
     it { should_not eq '' }
   end
 end

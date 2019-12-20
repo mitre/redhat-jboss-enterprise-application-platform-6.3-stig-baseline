@@ -61,11 +61,11 @@ Assign the management interfaces to the management realm."
 
   connect = attribute('connection')
 
-  mgmt_interfaces = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\ /core-service=management/management-interface=").stdout.split("\n")
+  mgmt_interfaces = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\ /core-service=management/management-interface=").stdout.split("\n")
 
   mgmt_interfaces.each do |interface|
     describe "Wildfly management interface: #{interface}" do
-      subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=#{interface}").stdout }
+      subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=#{interface}").stdout }
       it { should match(%r{security-realm=ManagementRealm}) }
     end
   end

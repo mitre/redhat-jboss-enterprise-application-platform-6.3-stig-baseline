@@ -9,50 +9,59 @@ description: >
   An InSpec profile verifying STIG compliance with JBOSS EAP STIG
   http://iasecontent.disa.mil/stigs/zip/U_JBoss_EAP_6-3_V1R2_STIG.zip
   with modifications for Wildfly
-version: 0.1.0
+version: 0.2.0
 attributes:
+  - name: disable_show_controls
+    description: "Disables long running controls"
+    default: false
+
   - name: connection
-    description: 'Command used to connect to the wildfly instance'
+    description: "Command used to connect to the wildfly instance"
     type: string
-    default: '--connect'
+    default: "--connect"
+
+  - name: jboss_home
+    description: "the path for $JBOSS_HOME"
+    type: string
+    default: "/opt/wildfly"
 
   - name: auditor_role_users
-    description: 'List of authorized users with the auditor role.'
+    description: "List of authorized users with the auditor role."
     type: array
     default:
       - user-auditor
 
   - name: administrator_role_users
-    description: 'List of authorized users with the administrator role.'
+    description: "List of authorized users with the administrator role."
     type: array
     default:
       - user-admin
 
   - name: superuser_role_users
-    description: 'List of authorized users with the SuperUser role.'
+    description: "List of authorized users with the SuperUser role."
     type: array
     default:
       - user-superuser
       - user-$local
 
   - name: wildfly_group
-    description: 'group owner of files/directories'
+    description: "group owner of files/directories"
     type: string
-    default: 'wildfly'
+    default: "wildfly"
 
   - name: wildly_owner
-    description: 'user owner of files/directories'
+    description: "user owner of files/directories"
     type: string
-    default: 'wildfly'
+    default: "wildfly"
 
   - name: approved_applications
-    description: 'List of  authorized applications.'
+    description: "List of  authorized applications."
     type: array
     default:
       -
 
   - name: wildfly_ports
-    description: 'List of  authorized nginx modules.'
+    description: "List of  authorized nginx modules."
     type: array
     default:
       - jboss.management.http.port=9990
@@ -62,35 +71,35 @@ attributes:
       - jboss.ajp.port=8009
 
   - name: deployer_role_users
-    description: 'List of authorized users with the deployer role.'
+    description: "List of authorized users with the deployer role."
     type: array
     default:
       - user-deployer
 
   - name: maintainer_role_users
-    description: 'List of authorized users with the maintainer role.'
+    description: "List of authorized users with the maintainer role."
     type: array
     default:
       - user-maintainer
 
   - name: monitor_role_users
-    description: 'List of authorized users with the monitor role.'
+    description: "List of authorized users with the monitor role."
     type: array
     default:
       - user-monitor
 
   - name: operator_role_users
-    description: 'List of authorized users with the operator role.'
+    description: "List of authorized users with the operator role."
     type: array
     default:
       - user-operator
 
   - name: ldap
-    description: 'Set to true if ldap is being used'
+    description: "Set to true if ldap is being used"
     type: boolean
     default: false
 
   - name: high_availability
-    description: 'Set to true if widlfy is being used as a high-availability cluster'
+    description: "Set to true if widlfy is being used as a high-availability cluster"
     type: boolean
     default: false

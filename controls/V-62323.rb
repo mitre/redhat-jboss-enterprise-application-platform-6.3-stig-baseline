@@ -66,7 +66,7 @@ control 'V-62323' do
 
   connect = attribute('connection')
 
-  cipher_suites = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout
+  cipher_suites = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout
   describe.one do
     describe 'The wildfly cryptographic algorithm used for TLS' do
       subject { cipher_suites }

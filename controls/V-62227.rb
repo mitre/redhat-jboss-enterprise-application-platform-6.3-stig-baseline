@@ -46,7 +46,7 @@ role-mapping=ROLENAME/include=ALIAS:add(name-USERNAME, type=USER ROLE)"
   connect = attribute('connection')
 
   describe 'The wildfly server authorization access' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=authorization/").stdout }
     it { should match(%r{provider=rbac}) }
   end
 end

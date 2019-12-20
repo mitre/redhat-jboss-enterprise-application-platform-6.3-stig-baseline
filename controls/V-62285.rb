@@ -60,14 +60,14 @@ control 'V-62285' do
   ldap = attribute('ldap')
   connect = attribute('connection')
 
-  management_interfaces = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=").stdout.split("\n")
+  management_interfaces = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=").stdout.split("\n")
 
   management_interfaces.each do |interface|
 
-    security_realms = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
+    security_realms = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
     security_realms.each do |realm|
       describe "The security realm #{realm} authentication mechanism" do
-        subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect}  --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout }
+        subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect}  --commands=ls\\ /core-service=management/security-realm=#{realm}/authentication").stdout }
         it { should match /ldap/ }
       end
     end

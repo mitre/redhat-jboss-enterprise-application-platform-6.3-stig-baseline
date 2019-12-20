@@ -37,7 +37,7 @@ control 'V-62273' do
   connect = attribute('connection')
   approved_applications = attribute('approved_applications')
 
-  applications_deployed = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /deployment").stdout.split("\n")
+  applications_deployed = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /deployment").stdout.split("\n")
 
   applications_deployed.each do |app|
     a = app.strip

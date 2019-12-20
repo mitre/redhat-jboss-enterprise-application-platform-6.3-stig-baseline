@@ -33,7 +33,7 @@ seven days onto a different system or media from the system being logged."
 
   connect = attribute('connection')
   describe "The wildfly syslog-handler configuration" do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout }
     it { should_not eq '' }
   end
 end

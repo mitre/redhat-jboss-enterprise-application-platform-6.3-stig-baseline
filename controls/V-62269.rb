@@ -47,7 +47,7 @@ control 'V-62269' do
 
   connect = attribute('connection')
   describe 'The wildfly remote access' do
-    subject { command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=jmx/remoting-connector").stdout }
+    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=jmx/remoting-connector").stdout }
     it { should_not match(%r{jmx}) }
   end
 end

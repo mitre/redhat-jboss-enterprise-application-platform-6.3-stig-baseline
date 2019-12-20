@@ -43,7 +43,7 @@ personnel into the \"Auditor\" role."
   connect = attribute('connection')
   auditor_role_users = attribute('auditor_role_users')
 
-  auditor_role = command("/bin/sh /opt/wildfly/bin/jboss-cli.sh #{connect} --commands=ls\ /core-service=management/access=authorization/role-mapping=Auditor/include=").stdout.split("\n")
+  auditor_role = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\ /core-service=management/access=authorization/role-mapping=Auditor/include=").stdout.split("\n")
 
   auditor_role.each do |user|
     a = user.strip
