@@ -19,16 +19,21 @@ inspec exec https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
 ```
 
 Another option is to download the profile then run it, this allows you to edit specific instructions and view the profile code.
-``` bash
-# Clone Inspec Profile
-$ git clone https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
 
+#### Run these commands on the Target / JBOSS
+``` bash
 # Need to run the command 
 $ /bin/sh /opt/wildfly/bin/jboss-cli.sh --connect 
 # Enter P to permanetely accept the certificate
 
-# How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
+```
+
+#### Run the following commands on the runner with InSpec
+
+##### Download the repo and configure
+``` bash
+# Clone Inspec Profile
+$ git clone https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
 
 #If running the profile before running the wildfly-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
 connection: '--connect'
@@ -37,6 +42,31 @@ connection: '--connect'
 connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
 
 ```
+
+##### Running the Profile
+To run it locally
+```bash
+# How to run 
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
+```
+
+How to run on a remote target
+```bash
+# How to run 
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
+```
+
+How to run on a remote target using pem key
+```bash
+# How to run 
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT -i PEM_KEY --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
+```
+
+How to run on docker container
+```bash
+Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID
+```
+
 
 ## Attributes (Configuration)
 You may alter the default settings of the profile by creating/modifying a yaml 
