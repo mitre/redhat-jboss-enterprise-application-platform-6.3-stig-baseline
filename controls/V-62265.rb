@@ -45,10 +45,10 @@ control 'V-62265' do
   tag "fix": "Run the JBoss server with non-admin rights."
   tag "fix_id": 'F-68185r1_fix'
 
-  user = command("ps -ef | grep wildfly | grep -v 'color=auto wildfly' | grep -v inspec | grep -v grep | awk '{print $1}'").stdout.split("\n")
+  user = command("ps -ef | grep #{input('jboss_process_name')} | grep -v inspec | grep -v grep | awk '{print $1}'|uniq").stdout.split("\n")
 
   describe 'The wildly process owner' do
-    subject { command("ps -ef | grep wildfly | grep -v 'color=auto wildfly' | grep -v inspec | grep -v grep | awk '{print $1}").stdout }
+    subject { command("ps -ef | grep #{input('jboss_process_name')} | grep -v inspec | grep -v grep | awk '{print $1}'|uniq").stdout }
     it { should_not match(%r{root}) }
   end
 

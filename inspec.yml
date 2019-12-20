@@ -16,6 +16,11 @@ inputs:
     description: "Disables long running controls"
     value: false
 
+  - name: jboss_process_name
+    description: "The process name for jboss"
+    type: string
+    value: "wildfly"
+
   - name: connection
     description: "Command used to connect to the wildfly instance"
     type: string
