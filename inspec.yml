@@ -11,6 +11,10 @@ description: >
   with modifications for Wildfly
 version: 0.2.0
 attributes:
+  - name: disable_show_controls
+    description: "Disables long running controls"
+    default: false
+
   - name: connection
     description: "Command used to connect to the wildfly instance"
     type: string

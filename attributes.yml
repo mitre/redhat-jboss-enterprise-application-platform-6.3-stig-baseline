@@ -12,6 +12,8 @@
 #-u=<username to login in a>
 #-p=<password>
 
+disable_slow_controls: false
+
 #If running the profile, before running the wildfly-hardening cookbook set this
 connection: '--connect'
 
