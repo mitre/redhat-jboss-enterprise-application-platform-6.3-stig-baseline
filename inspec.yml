@@ -9,7 +9,7 @@ description: >
   An InSpec profile verifying STIG compliance with JBOSS EAP STIG
   http://iasecontent.disa.mil/stigs/zip/U_JBoss_EAP_6-3_V1R2_STIG.zip
   with modifications for Wildfly
-version: 0.2.0
+version: 1.0.0
 
 inputs:
   - name: disable_show_controls
