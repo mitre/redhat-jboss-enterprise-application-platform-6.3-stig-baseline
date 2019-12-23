@@ -44,31 +44,37 @@ connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.
 ```
 
 ##### Running the Profile
-To run it locally
+To run it locally on the target with InSpec installed
 ```bash
 # How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
 ```
 
-How to run on a remote target
+How to run on a remote target using ssh
 ```bash
 # How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+```
+
+If you need to run your profile with escalated privileges
+```bash
+# How to run 
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml --sudo --sudo-options='-u jbosseap'
 ```
 
 How to run on a remote target using pem key
 ```bash
 # How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT -i PEM_KEY --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT -i PEM_KEY --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
 ```
 
 How to run on docker container
 ```bash
-Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID --attrs red-hat-jboss-eap-6.3-stig-baseline/
+Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
 ```
 
 
-## Attributes (Configuration)
+## Inputs (Configuration)
 You may alter the default settings of the profile by creating/modifying a yaml 
 encoded 'attributes' file. The following yaml code details the currently 
 supported attributes, and can also be viewed as the attributes.yml file in this 
@@ -78,6 +84,8 @@ repository.
 #command to use when the wildfly cli is configured with a password
 #-u=<username to login in a>
 #-p=<password>
+
+disable_slow_controls: false
 
 #If running the profile before running the wildfly-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
 connection: '--connect'
@@ -92,6 +100,9 @@ ldap: 'false'
 #node.default['wildfly-hardening']['c'] = '--connect'
 
 ```
+
+### Disabling slow controls
+To disable the slow running controls then change the `disable_slow_controls` option in the `inputs.example.yml` file to `true`
 
 ## Authors
 - Alicia Sturtevant
