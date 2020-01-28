@@ -3,53 +3,43 @@
 InSpec profile to validate the secure configuration of JBOSS Wildfly EAP server, against [DISA](https://iase.disa.mil/stigs/)'s **JBOSS Security Technical Implementation Guide (STIG)**.
 
 ## Getting Started  
-It is intended and recommended that InSpec run this profile from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __winrm__.
+It is intended and recommended that InSpec run this profile from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __ssh__.
 
 __For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
 
 Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
 
-
-### Run with remote profile:
-You may choose to run the profile via a remote url, this has the advantage of always being up to date.
-The disadvantage is you may wish to modify controls, which is only possible when downloaded.
-Also, the remote profile is unintuitive for passing in attributes, which modify the default values of the profile.
+### Download the repo and configure
 ``` bash
-inspec exec https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
+# For an out of the box installation of JBOSS: 
+connection: '--connect'
+
+# If targeting a remote JBOSS instance: 
+connection: '--connect --controller=<IP_OF_REMOTE_JBOSS_HOST>:9990'
+
+# If for example the JBOSS instance has been hardened with the wildfly-hardening cookbook (https://github.com/mitre/chef-red-hat-jboss-eap-6.3-stig-baseline) set the connection to the following:
+connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
+
 ```
+### For further examples of how to utilize the JBOSS CLI 
+[JBOSS CLI Docs](https://docs.jboss.org/author/display/WFLY/Command+Line+Interface)
 
-Another option is to download the profile then run it, this allows you to edit specific instructions and view the profile code.
+### Running this Profile
 
-#### Run these commands on the Target / JBOSS
+If this is a fresh JBOSS installation, run the following command from the command line of the system hosting the JBOSS instance:
+
 ``` bash
 # Need to run the command 
 $ /bin/sh /opt/wildfly/bin/jboss-cli.sh --connect 
 # Enter P to permanetely accept the certificate
-
 ```
 
-#### Run the following commands on the runner with InSpec
-
-##### Download the repo and configure
-``` bash
-# Clone Inspec Profile
-$ git clone https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
-
-#If running the profile before running the wildfly-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
-connection: '--connect'
-
-# If running the profile after running the wildfy-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
-connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
-
-```
-
-##### Running the Profile
-To run it locally on the target with InSpec installed
+#### Clone Inspec Profile on the runner host
 ```bash
-# How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+$ git clone https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline.git
 ```
 
+#### Different InSpec Exec commands depending on your target
 How to run on a remote target using ssh
 ```bash
 # How to run 
@@ -71,6 +61,12 @@ $ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME@TARGE
 How to run on docker container
 ```bash
 Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+```
+
+To run it locally on the target with InSpec installed (JBOSS and InSpec installed on same box)
+```bash
+# How to run 
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
 ```
 
 
