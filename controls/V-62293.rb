@@ -49,15 +49,15 @@ control 'V-62293' do
   3. Reference the new security domain in the Management Interface."
   tag "fix_id": 'F-68213r1_fix'
 
-  connect = attribute('connection')
-  ldap = attribute('ldap')
+  connect = input('connection')
+  ldap = input('ldap')
 
   if ldap
     describe 'A manual review is required to ensure wildfly uses encryption when using LDAP for authentication' do
       skip 'A manual review is required to ensure wildfly uses encryption when using LDAP for authentication'
     end
   else
-    describe command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https") do
+    describe command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https") do
       its('stdout') { should match(%r{enabled=true}) }
     end
   end

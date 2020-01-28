@@ -19,16 +19,21 @@ inspec exec https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
 ```
 
 Another option is to download the profile then run it, this allows you to edit specific instructions and view the profile code.
-``` bash
-# Clone Inspec Profile
-$ git clone https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
 
+#### Run these commands on the Target / JBOSS
+``` bash
 # Need to run the command 
 $ /bin/sh /opt/wildfly/bin/jboss-cli.sh --connect 
 # Enter P to permanetely accept the certificate
 
-# How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --attrs red-hat-jboss-eap-6.3-stig-baseline/attributes.yml
+```
+
+#### Run the following commands on the runner with InSpec
+
+##### Download the repo and configure
+``` bash
+# Clone Inspec Profile
+$ git clone https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline
 
 #If running the profile before running the wildfly-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
 connection: '--connect'
@@ -38,7 +43,38 @@ connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.
 
 ```
 
-## Attributes (Configuration)
+##### Running the Profile
+To run it locally on the target with InSpec installed
+```bash
+# How to run 
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+```
+
+How to run on a remote target using ssh
+```bash
+# How to run 
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+```
+
+If you need to run your profile with escalated privileges
+```bash
+# How to run 
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml --sudo --sudo-options='-u jbosseap'
+```
+
+How to run on a remote target using pem key
+```bash
+# How to run 
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT -i PEM_KEY --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+```
+
+How to run on docker container
+```bash
+Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+```
+
+
+## Inputs (Configuration)
 You may alter the default settings of the profile by creating/modifying a yaml 
 encoded 'attributes' file. The following yaml code details the currently 
 supported attributes, and can also be viewed as the attributes.yml file in this 
@@ -48,6 +84,8 @@ repository.
 #command to use when the wildfly cli is configured with a password
 #-u=<username to login in a>
 #-p=<password>
+
+disable_slow_controls: false
 
 #If running the profile before running the wildfly-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
 connection: '--connect'
@@ -62,6 +100,9 @@ ldap: 'false'
 #node.default['wildfly-hardening']['c'] = '--connect'
 
 ```
+
+### Disabling slow controls
+To disable the slow running controls then change the `disable_slow_controls` option in the `inputs.example.yml` file to `true`
 
 ## Authors
 - Alicia Sturtevant

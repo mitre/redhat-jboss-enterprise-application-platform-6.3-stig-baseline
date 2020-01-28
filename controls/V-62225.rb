@@ -81,25 +81,25 @@ Enable the respective JAVA_OPTS flag in both the standalone.conf and the
 standalone.conf.bat files."
   tag "fix_id": 'F-68145r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
-  describe file("#{ attribute('jboss_home') }/bin/standalone.conf") do
+  describe file("#{ input('jboss_home') }/bin/standalone.conf") do
     its('content') { should_not match(%r{#JAVA_OPTS}) }
   end
   describe.one do
-    describe file("#{ attribute('jboss_home') }/bin/standalone.conf") do
+    describe file("#{ input('jboss_home') }/bin/standalone.conf") do
       its('content') { should_not match(%r{JAVA_OPTS=\s*}) }
     end
-    describe file("#{ attribute('jboss_home') }/bin/standalone.conf") do
+    describe file("#{ input('jboss_home') }/bin/standalone.conf") do
       its('content') { should_not match(%r{JAVA_OPTS="\s*"\s*}) }
     end
   end
 
   describe.one do
-    describe file("#{ attribute('jboss_home') }/bin/standalone.bat") do
+    describe file("#{ input('jboss_home') }/bin/standalone.bat") do
       its('content') { should_not match(%r{#set\s*"JAVA_OPTS=\s*}) }
     end
-    describe file("#{ attribute('jboss_home') }/bin/standalone.bat") do
+    describe file("#{ input('jboss_home') }/bin/standalone.bat") do
       its('content') { should_not match(%r{set\s*"JAVA_OPTS=\s*}) }
     end
   end

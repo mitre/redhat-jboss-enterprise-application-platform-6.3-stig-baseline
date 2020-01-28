@@ -40,12 +40,12 @@ control 'V-62291' do
   document."
   tag "fix_id": 'F-68211r1_fix'
 
-  connect = attribute('connection')
-  ldap = attribute('ldap')
+  connect = input('connection')
+  ldap = input('ldap')
 
   if ldap
     describe 'The LDAP enabled security realm value allow-empty-passwords' do
-      subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=ldap_security_realm/authentication=ldap").stdout }
+      subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=ldap_security_realm/authentication=ldap").stdout }
       it { should_not match(%r{allow-empty-passwords=true}) }
     end
   else

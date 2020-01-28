@@ -47,10 +47,10 @@ control 'V-62295' do
   tag "fix": "Configure the application server OS file permissions on the
   corresponding private key to restrict access to authorized accounts or roles."
   tag "fix_id": 'F-68215r1_fix'
-  describe directory("#{ attribute('jboss_home') }/vault") do
+  describe directory("#{ input('jboss_home') }/vault") do
     it { should_not be_readable.by('others') }
   end
-  describe directory("#{ attribute('jboss_home') }/vault") do
+  describe directory("#{ input('jboss_home') }/vault") do
     it { should_not be_writable.by('others') }
   end
 end

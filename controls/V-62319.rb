@@ -49,7 +49,7 @@ control 'V-62319' do
   the hosted application."
   tag "fix_id": 'F-68239r1_fix'
 
-  high_availability = attribute('high_availability')
+  high_availability = input('high_availability')
 
   describe 'The wildfly configuration file used' do
       subject { command ('ps -ef | grep wildfly | grep -v grep | grep -v chef').stdout }

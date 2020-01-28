@@ -38,9 +38,9 @@ control 'V-62271' do
   </jboss-web>"
   tag "fix_id": 'F-68191r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
   describe 'The wildfly web application' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/host=default-host/location=\\\/").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/host=default-host/location=\\\/").stdout }
     it { should_not match(%r{handler=welcome-content}) }
   end
 end

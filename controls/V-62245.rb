@@ -58,10 +58,10 @@ For a Standalone configuration:
 \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
   tag "fix_id": 'F-68165r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'Wildfly record the IP address and port information used by management interface network traffic.' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
   end
 end

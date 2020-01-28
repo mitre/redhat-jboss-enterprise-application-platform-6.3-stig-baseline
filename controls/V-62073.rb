@@ -46,10 +46,10 @@ This involves the following steps.
 6. Restart the EAP server."
   tag "fix_id": 'F-67993r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The wildfly HTTP management session traffic configuration' do
-  subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface").stdout }
+  subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface").stdout }
     it { should_not match /secure-socket-binding=undefined/ }
   end
 end

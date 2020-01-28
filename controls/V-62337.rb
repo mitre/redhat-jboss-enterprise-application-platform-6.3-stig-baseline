@@ -52,10 +52,10 @@ control 'V-62337' do
   \"/core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)\""
   tag "fix_id": 'F-68257r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The wildfly server setting: generate log records that show starting and ending times for access to the application server management interface' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
   end
 end

@@ -34,10 +34,10 @@ control 'V-62273' do
   deployed to the application server.  Remove unauthorized applications."
   tag "fix_id": 'F-68193r1_fix' 
 
-  connect = attribute('connection')
-  approved_applications = attribute('approved_applications')
+  connect = input('connection')
+  approved_applications = input('approved_applications')
 
-  applications_deployed = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /deployment").stdout.split("\n")
+  applications_deployed = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /deployment").stdout.split("\n")
 
   applications_deployed.each do |app|
     a = app.strip

@@ -47,10 +47,10 @@ control 'V-62313' do
   /core-service=management/access=audit/logger=audit-log:write-attribute(name=enabled,value=true)"
   tag "fix_id": 'F-68233r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The Wildfly server setting: log when failed application deployments occur' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/access=audit/logger=audit-log").stdout }
     it { should_not match(%r{enabled=false}) }
   end
 end

@@ -46,13 +46,13 @@ control 'V-62277' do
   3. Reference the new security domain in the Management Interface."
   tag "fix_id": 'F-68197r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
-  get_security_realms = command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
+  get_security_realms = command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=").stdout.split("\n")
 
   get_security_realms.each do |security_realm|
     describe "The security realm #{security_realm} authentication mechanism" do
-      subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{security_realm}/authentication").stdout }
+      subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/security-realm=#{security_realm}/authentication").stdout }
       it { should include 'ldap' }
     end
   end

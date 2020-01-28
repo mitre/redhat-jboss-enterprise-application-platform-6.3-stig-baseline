@@ -48,10 +48,10 @@ control 'V-62217' do
   and resource requirements."
   tag "fix_id": 'F-68137r1_fix'
   describe.one do
-    describe file("#{ attribute('jboss_home') }/bin/standalone.conf") do
+    describe file("#{ input('jboss_home') }/bin/standalone.conf") do
       its('content') { should match(%r{JAVA_OPTS="\$JAVA_OPTS -Djavax.security.policy=\/usr\/lib\/jvm\/java\-1.8.0\/jre\/lib\/security\/java.policy"}) }
     end
-    describe file("#{ attribute('jboss_home') }/bin/standalone.conf") do
+    describe file("#{ input('jboss_home') }/bin/standalone.conf") do
       its('content') { should match(%r{JAVA_OPTS="\$JAVA_OPTS -Djava.security.manager -Djava.security.policy==%JBOSS_HOME\\lib\\security\\java.policy.policy -Djboss.home.dir=%JBOSS_HOME% -Djboss.modules.policy-permissions=true"}) }
     end
   end

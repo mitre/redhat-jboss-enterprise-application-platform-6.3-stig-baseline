@@ -31,9 +31,9 @@ finding."
 seven days onto a different system or media from the system being logged."
   tag "fix_id": 'F-68177r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
   describe "The wildfly syslog-handler configuration" do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout }
     it { should_not eq '' }
   end
 end

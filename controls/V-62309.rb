@@ -60,10 +60,10 @@ control 'V-62309' do
   If no values are returned, this is a finding."
   tag "fix_id": 'F-68229r1_fix'
 
-  connect = attribute('connection')
+  connect = input('connection')
 
   describe 'The wildfly server syslog handler' do
-    subject { command("/bin/sh #{ attribute('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout }
+    subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=logging/syslog-handler=").stdout }
     it { should_not eq '' }
   end
 end
