@@ -3,13 +3,15 @@
 InSpec profile to validate the secure configuration of JBOSS Wildfly EAP server, against [DISA](https://iase.disa.mil/stigs/)'s **JBOSS Security Technical Implementation Guide (STIG)**.
 
 ## Getting Started  
-It is intended and recommended that InSpec run this profile from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __ssh__.
+It is intended and recommended that InSpec run this profile from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __SSH__.
 
 __For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
 
 Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
 
-### Download the repo and configure
+The following inputs must be configured in an inputs file for the profile to run correctly. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
+
+### Configuring the inputs in your inputs.yml file
 ``` bash
 # For an out of the box installation of JBOSS: 
 connection: '--connect'
