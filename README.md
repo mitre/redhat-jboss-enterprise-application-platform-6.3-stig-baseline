@@ -45,30 +45,30 @@ $ git clone https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline.git
 How to run on a remote target using ssh
 ```bash
 # How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
 ```
 
 If you need to run your profile with escalated privileges
 ```bash
 # How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml --sudo --sudo-options='-u jbosseap'
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml --sudo --sudo-options='-u jbosseap'
 ```
 
 How to run on a remote target using pem key
 ```bash
 # How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT -i PEM_KEY --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT -i PEM_KEY --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
 ```
 
 How to run on docker container
 ```bash
-Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
 ```
 
 To run it locally on the target with InSpec installed (JBOSS and InSpec installed on same box)
 ```bash
 # How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --input_files red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
+$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
 ```
 
 
