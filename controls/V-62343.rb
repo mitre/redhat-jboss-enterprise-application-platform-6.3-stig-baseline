@@ -37,7 +37,10 @@ control 'V-62343' do
   tag "fix": "Configure the application server to use DoD- or CNSS-approved
   Class 3 or Class 4 PKI certificates."
   tag "fix_id": 'F-68263r1_fix'
-  certs = command("keytool -list -v -keystore /usr/lib/jvm/java-1.8.0/jre/lib/security/cacerts").stdout
+
+  java_cert = input('java_cert')
+
+  certs = command("keytool -list -v -keystore #{java_cert}").stdout
   describe.one do
     describe 'The wildfly server PKI certificate' do
       subject { certs }
