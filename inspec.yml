@@ -109,3 +109,8 @@ inputs:
     description: "Set to true if widlfy is being used as a high-availability cluster"
     type: boolean
     value: false
+
+  - name: java_cert
+    description: "location on hard disk of the java cacert file"
+    type: string
+    value: "/usr/lib/jvm/java-1.8.0/jre/lib/security/cacerts"
