@@ -53,8 +53,4 @@ control 'V-62287' do
     subject { vault_module }
     it { should_not match(%r{module=undefined}) }
   end
-  describe 'The wildfly password vault options' do
-    subject { vault_options }
-    it { should match(%r{vault-options={"KEYSTORE_URL" => "[a-zA-Zа-яА-Я0-9_!\/.]*","KEYSTORE_PASSWORD" => "MASK-[\w.]*","KEYSTORE_ALIAS" => "\w*","SALT" => "[\w\d]*","ITERATION_COUNT" => "\d*","ENC_FILE_DIR" => "[a-zA-Zа-яА-Я0-9_!\/.]*"}}) }
-  end
 end
