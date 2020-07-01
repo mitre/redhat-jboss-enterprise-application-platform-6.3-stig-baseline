@@ -53,10 +53,10 @@ Select the port that needs to be reconfigured and select \"Edit\"."
   wildfly_ports = input('wildfly_ports')
 
   wildfly_ports.each do |port|
-    describe file("#{ input('jboss_home') }/standalone/configuration/service.properties") do
+    describe file("#{ input('jboss_home') }/standalone/configuration/standalone.xml") do
       its('content') { should include port }
     end
-    describe file("#{ input('jboss_home') }/standalone/configuration/service.properties") do
+    describe file("#{ input('jboss_home') }/standalone/configuration/standalone.xml") do
       it { should exist}
     end
   end
