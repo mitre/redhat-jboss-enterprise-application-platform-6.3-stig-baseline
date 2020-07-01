@@ -61,8 +61,8 @@ control 'V-62297' do
   Refer to section 4.9 in the Wildfly Installation Guide for specific
   instructions on how to start the Wildfly server as a service."
   tag "fix_id": 'F-68217r1_fix'
-  bind_mgmt_address = command("grep jboss.bind.address.management #{ input('jboss_home') }/standalone/configuration/service.properties | awk -F'=' '{print $2}' ").stdout
-  public_bind_address = command("grep jboss.bind.address #{ input('jboss_home') }/standalone/configuration/service.properties | grep -v management | awk -F'=' '{print $2}' ").stdout
+  bind_mgmt_address = command("grep jboss.bind.address.management #{ input('jboss_home') }/standalone/configuration/standalone.xml | awk -F'=' '{print $2}' ").stdout
+  public_bind_address = command("grep jboss.bind.address #{ input('jboss_home') }/standalone/configuration/standalone.xml | grep -v management | awk -F'=' '{print $2}' ").stdout
   describe 'The wildfly bind management address' do
     subject { bind_mgmt_address }
     it { should_not eq public_bind_address }
