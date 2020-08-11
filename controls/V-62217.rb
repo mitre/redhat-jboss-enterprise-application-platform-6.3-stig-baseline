@@ -54,5 +54,8 @@ control 'V-62217' do
     describe file("#{ input('jboss_home') }/bin/standalone.conf") do
       its('content') { should match(%r{JAVA_OPTS="\$JAVA_OPTS -Djava.security.manager -Djava.security.policy==%JBOSS_HOME\\lib\\security\\java.policy.policy -Djboss.home.dir=%JBOSS_HOME% -Djboss.modules.policy-permissions=true"}) }
     end
+    describe parse_config_file("#{ input('jboss_home') }/bin/standalone.conf") do
+      its('SECMGR') { should match(%r{"true"}) }
+    end
   end
 end
