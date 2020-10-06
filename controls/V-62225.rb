@@ -93,14 +93,21 @@ standalone.conf.bat files."
     describe file("#{ input('jboss_home') }/bin/standalone.conf") do
       its('content') { should_not match(%r{JAVA_OPTS="\s*"\s*}) }
     end
+    describe parse_config_file("#{ input('jboss_home') }/bin/standalone.conf") do
+      its('SECMGR') { should match(%r{"true"}) }
+    end
   end
 
   describe.one do
-    describe file("#{ input('jboss_home') }/bin/standalone.bat") do
+    describe file("#{ input('jboss_home') }/bin/standalone.conf.bat") do
       its('content') { should_not match(%r{#set\s*"JAVA_OPTS=\s*}) }
     end
-    describe file("#{ input('jboss_home') }/bin/standalone.bat") do
+    describe file("#{ input('jboss_home') }/bin/standalone.conf.bat") do
       its('content') { should_not match(%r{set\s*"JAVA_OPTS=\s*}) }
+    end
+    describe file("#{ input('jboss_home') }/bin/standalone.conf.bat") do
+      its('content') { should include 'set "SECMGR=true"' }
+      its('content') { should_not include 'rem set "SECMGR=true"' }
     end
   end
 end
