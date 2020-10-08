@@ -58,6 +58,6 @@ control 'V-62321' do
 
   describe 'The wildfly enabled TLS versions' do
     subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /subsystem=undertow/server=default-server/https-listener=https/").stdout }
-    it { should match(%r{enabled-protocols=TLSv1.[12]:TLSv1.[12]}) }
+    it { should match(%r{enabled-protocols=TLSv1.[12]}) }
   end
 end

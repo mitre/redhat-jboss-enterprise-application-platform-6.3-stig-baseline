@@ -70,11 +70,11 @@ control 'V-62323' do
   describe.one do
     describe 'The wildfly cryptographic algorithm used for TLS' do
       subject { cipher_suites }
-      it { should match(%r{enabled-cipher-suites=AES_(128|256)_CBC:AES_(128|256)_GCM:AES_(128|256)_CCM:AES_(128|256)_CCM}) }
+      it { should match(%r{enabled-cipher-suites=(AES_((128)|(256))_CBC)|(AES_((128)|(256))_GCM)|(AES_((128)|(256))_CCM)|(AES_((128)|(256))_CCM)}) }
     end
     describe 'The wildfly cryptographic algorithm used for TLS' do
       subject { cipher_suites }
-      it { should match(%r{enabled-cipher-suites=AES_(128|256)_CBC}) }
+      it { should match(%r{enabled-cipher-suites=AES_((128)|(256))_CBC}) }
     end
     describe 'The wildfly cryptographic algorithm used for TLS' do
       subject { cipher_suites }
@@ -82,7 +82,7 @@ control 'V-62323' do
     end
     describe 'The wildfly cryptographic algorithm used for TLS' do
       subject { cipher_suites }
-      it { should match(%r{enabled-cipher-suites=AES_(128|256)_CCM}) }
+      it { should match(%r{enabled-cipher-suites=AES_((128)|(256))_CCM}) }
     end
   end
 end
