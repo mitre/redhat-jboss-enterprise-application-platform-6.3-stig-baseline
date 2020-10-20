@@ -49,6 +49,6 @@ control 'V-62303' do
 
   describe 'The wildfly HTTP management interface' do
     subject { command("/bin/sh #{ input('jboss_home') }/bin/jboss-cli.sh #{connect} --commands=ls\\ /core-service=management/management-interface=http-interface").stdout }
-    it { should_not match(%r{console-enabled=true}) }
+    it { should_not include 'console-enabled=true' }
   end
 end
