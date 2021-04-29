@@ -1,15 +1,16 @@
-name: red-hat-jboss-eap-6.3-stig-baseline
-title: wildfly inspec profile
+name: redhat-jboss-enterprise-application-platform-6.3-stig-baseline
+title: redhat-jboss-enterprise-application-platform-6.3-stig-baseline
 maintainer: MITRE InSpec Team
 copyright: MITRE InSpec Team
 copyright_email: inspec@mitre.org
 license: Apache-2.0
-summary: InSpec profile testing compliance with DISA STIG for JBOSS EAP Wildfly
+summary: "InSpec Validation Profile for JBOSS Wildfly EAP 6.3 STIG"
 description: >
   An InSpec profile verifying STIG compliance with JBOSS EAP STIG
   http://iasecontent.disa.mil/stigs/zip/U_JBoss_EAP_6-3_V1R2_STIG.zip
   with modifications for Wildfly
-version: 1.0.0
+version: 1.0.1
+inspec_version: ">= 4.0"
 
 inputs:
   - name: disable_slow_controls
@@ -40,12 +41,14 @@ inputs:
   - name: administrator_role_users
     description: "List of authorized users with the administrator role."
     type: array
+    sensitive: true
     value:
       - user-admin
 
   - name: superuser_role_users
     description: "List of authorized users with the SuperUser role."
     type: array
+    sensitive: true
     value:
       - user-superuser
       - user-$local
@@ -58,6 +61,7 @@ inputs:
   - name: wildly_owner
     description: "user owner of files/directories"
     type: string
+    sensitive: true
     value: "wildfly"
 
   - name: approved_applications
