@@ -1,6 +1,6 @@
 # red-hat-jboss-eap-6.3-stig-baseline
 
-InSpec profile to validate the secure configuration of JBOSS Wildfly EAP server, against [DISA](https://iase.disa.mil/stigs/)'s **JBOSS Security Technical Implementation Guide (STIG)**.
+InSpec profile to validate the secure configuration of JBOSS Wildfly EAP server, against [DISA](https://iase.disa.mil/stigs/)'s JBOSS Security Technical Implementation Guide (STIG).
 
 ## Getting Started  
 It is intended and recommended that InSpec run this profile from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __SSH__.
@@ -9,10 +9,10 @@ __For the best security of the runner, always install on the runner the _latest 
 
 Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
 
+## Tailoring to Your Environment
 The following inputs must be configured in an inputs file for the profile to run correctly. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
 
-### Configuring the inputs in your inputs.yml file
-``` bash
+``` yaml
 # For an out of the box installation of JBOSS: 
 connection: '--connect'
 
@@ -22,11 +22,62 @@ connection: '--connect --controller=<IP_OF_REMOTE_JBOSS_HOST>:9990'
 # If for example the JBOSS instance has been hardened with the wildfly-hardening cookbook (https://github.com/mitre/chef-red-hat-jboss-eap-6.3-stig-baseline) set the connection to the following:
 connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
 
+# Disables long running controls
+disable_slow_controls: false
+
+# The process name for jboss
+jboss_process_name: ''
+
+# the path for $JBOSS_HOME
+jboss_home: ''
+
+# List of authorized users with the auditor role.
+auditor_role_users: []
+
+# List of authorized users with the administrator role.
+administrator_role_users: []
+
+# List of authorized users with the SuperUser role.
+superuser_role_users: []
+
+# group owner of files/directories
+wildfly_group: ''
+
+# user owner of files/directories
+wildly_owner: ''
+
+# List of  authorized applications.
+approved_applications: []
+
+# List of  authorized nginx modules.
+wildfly_ports: []
+
+# List of authorized users with the deployer role.
+deployer_role_users: []
+
+# List of authorized users with the maintainer role.
+maintainer_role_users: []
+
+# List of authorized users with the monitor role.
+monitor_role_users: []
+
+# List of authorized users with the operator role.
+operator_role_users: []
+
+# Set to true if ldap is being used
+ldap: false
+
+# Set to true if widlfy is being used as a high-availability cluster
+high_availability: false
+
+# location on hard disk of the java cacert file
+java_cert: ''
 ```
+
 ### For further examples of how to utilize the JBOSS CLI 
 [JBOSS CLI Docs](https://docs.jboss.org/author/display/WFLY/Command+Line+Interface)
 
-### Running this Profile
+# Running This Baseline Directly from Github
 
 If this is a fresh JBOSS installation, run the following command from the command line of the system hosting the JBOSS instance:
 
@@ -36,88 +87,63 @@ $ /bin/sh /opt/wildfly/bin/jboss-cli.sh --connect
 # Enter P to permanetely accept the certificate
 ```
 
-#### Clone Inspec Profile on the runner host
-```bash
-$ git clone https://github.com/mitre/red-hat-jboss-eap-6.3-stig-baseline.git
-```
-
-#### Different InSpec Exec commands depending on your target
-How to run on a remote target using ssh
-```bash
-# How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
-```
-
-If you need to run your profile with escalated privileges
-```bash
-# How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml --sudo --sudo-options='-u jbosseap'
-```
-
-How to run on a remote target using pem key
-```bash
-# How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT -i PEM_KEY --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
-```
-
-How to run on docker container
-```bash
-Inspec exec red-hat-jboss-eap-6.3-stig-baseline -t docker://DOCKER_CONTAINER_ID --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
-```
-
-To run it locally on the target with InSpec installed (JBOSS and InSpec installed on same box)
-```bash
-# How to run 
-$ inspec exec red-hat-jboss-eap-6.3-stig-baseline --input-file red-hat-jboss-eap-6.3-stig-baseline/inputs.example.yml
-```
-
-
-## Inputs (Configuration)
-You may alter the default settings of the profile by creating/modifying a yaml 
-encoded 'attributes' file. The following yaml code details the currently 
-supported attributes, and can also be viewed as the attributes.yml file in this 
-repository.
-
-``` yaml
-#command to use when the wildfly cli is configured with a password
-#-u=<username to login in a>
-#-p=<password>
-
-disable_slow_controls: false
-
-#If running the profile before running the wildfly-hardening cookbook set the following in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
-connection: '--connect'
-
-#If running the profile after running the wildfy-hardening cookbook set this in red-hat-jboss-eap-6.3-stig-baseline/attributes.yml:
-connection: '-Djavax.net.ssl.trustStore=/opt/wildfly/standalone/configuration/a.jks --connect -u=test1 -p=test'
-high_availability: 'false'
-ldap: 'false'
-
-
-
-#node.default['wildfly-hardening']['c'] = '--connect'
+On the runner
 
 ```
+# How to run
+inspec exec https://github.com/mitre/redhat-jboss-enterprise-application-platform-6.3-stig-baseline/archive/master.tar.gz -t ssh:// --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+```
 
-### Disabling slow controls
-To disable the slow running controls then change the `disable_slow_controls` option in the `inputs.example.yml` file to `true`
+### Different Run Options
+
+  [Full exec options](https://docs.chef.io/inspec/cli/#options-3)
+
+## Running This Baseline from a local Archive copy 
+
+If your runner is not always expected to have direct access to GitHub, use the following steps to create an archive bundle of this baseline and all of its dependent tests:
+
+(Git is required to clone the InSpec profile using the instructions below. Git can be downloaded from the [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) site.)
+
+When the __"runner"__ host uses this profile baseline for the first time, follow these steps: 
+
+```
+mkdir profiles
+cd profiles
+git clone https://github.com/mitre/redhat-jboss-enterprise-application-platform-6.3-stig-baseline
+inspec archive redhat-jboss-enterprise-application-platform-6.3-stig-baseline
+inspec exec <name of generated archive> -t ssh:// --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+```
+For every successive run, follow these steps to always have the latest version of this baseline:
+
+```
+cd redhat-jboss-enterprise-application-platform-6.3-stig-baseline
+git pull
+cd ..
+inspec archive redhat-jboss-enterprise-application-platform-6.3-stig-baseline --overwrite
+inspec exec <name of generated archive> -t ssh:// --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+```
+
+## Viewing the JSON Results
+
+The JSON results output file can be loaded into __[heimdall-lite](https://heimdall-lite.mitre.org/)__ for a user-interactive, graphical view of the InSpec results. 
+
+The JSON InSpec results file may also be loaded into a __[full heimdall server](https://github.com/mitre/heimdall)__, allowing for additional functionality such as to store and compare multiple profile runs.
 
 ## Authors
-- Alicia Sturtevant
+* Alicia Sturtevant - [asturtevant](https://github.com/asturtevant)
 
-## Special Thanks
+## Special Thanks 
+* Mohamed El-Sharkawi - [HackerShark](https://github.com/HackerShark)
+* Shivani Karikar - [karikarshivani](https://github.com/karikarshivani)
 
-- The MITRE InSpec Team
-
-## License 
-
-This project is licensed under the terms of the [Apache 2.0 license](https://github.com/mitre/wildfly-stig-baseline/blob/master/LICENSE.md).
+## Contributing and Getting Help
+To report a bug or feature request, please open an [issue](https://github.com/mitre/redhat-jboss-enterprise-application-platform-6.3-stig-baseline/issues/new).
 
 ### NOTICE
 
-© 2019 The MITRE Corporation.  
+© 2018-2020 The MITRE Corporation.
 
-Approved for Public Release; Distribution Unlimited. Case Number 18-3678.  
+Approved for Public Release; Distribution Unlimited. Case Number 18-3678.
 
 ### NOTICE
 MITRE hereby grants express written permission to use, reproduce, distribute, modify, and otherwise leverage this software to the extent permitted by the licensed terms provided in the LICENSE.md file included with this project.
