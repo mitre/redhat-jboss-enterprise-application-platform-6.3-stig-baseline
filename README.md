@@ -5,7 +5,6 @@ InSpec profile to validate the secure configuration of JBOSS Wildfly EAP server,
 ## Container-Ready: Profile updated to adapt checks when the running against a containerized instance of MongoDB, based on reference container: (docker pull registry1.dso.mil/ironbank/opensource/jboss/wildfly:latest)
 
 ## Getting Started  
-It is intended and recommended that InSpec run this profile from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __SSH__.
 
 __For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
 
@@ -89,7 +88,6 @@ $ /bin/sh /opt/wildfly/bin/jboss-cli.sh --connect
 # Enter P to permanetely accept the certificate
 ```
 
-On the runner
 
 Against a _**locally-hosted**_ instance (i.e., InSpec installed on the target)
 ```
