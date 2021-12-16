@@ -2,8 +2,9 @@
 
 InSpec profile to validate the secure configuration of JBOSS Wildfly EAP server, against [DISA](https://iase.disa.mil/stigs/)'s JBOSS Security Technical Implementation Guide (STIG).
 
+## Container-Ready: Profile updated to adapt checks when the running against a containerized instance of MongoDB, based on reference container: (docker pull registry1.dso.mil/ironbank/opensource/jboss/wildfly:latest)
+
 ## Getting Started  
-It is intended and recommended that InSpec run this profile from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __SSH__.
 
 __For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
 
@@ -87,11 +88,14 @@ $ /bin/sh /opt/wildfly/bin/jboss-cli.sh --connect
 # Enter P to permanetely accept the certificate
 ```
 
-On the runner
 
+Against a _**locally-hosted**_ instance (i.e., InSpec installed on the target)
 ```
-# How to run
-inspec exec https://github.com/mitre/redhat-jboss-enterprise-application-platform-6.3-stig-baseline/archive/master.tar.gz -t ssh:// --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+inspec exec https://github.com/mitre/redhat-jboss-enterprise-application-platform-6.3-stig-baseline/archive/master.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json>
+```
+Against a _**docker-containerized**_ instance (i.e., InSpec installed on the node hosting the container):
+```bash
+inspec exec https://github.com/mitre/redhat-jboss-enterprise-application-platform-6.3-stig-baseline/archive/master.tar.gz -t docker://instance_id --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
 ### Different Run Options
